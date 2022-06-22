@@ -1,0 +1,27 @@
+<div class="container">
+
+
+    <mat-form-field class="example-form-field special" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [(ngModel)]=" registerModel.firstName">
+
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field special" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" [(ngModel)]=" registerModel.secondName">
+
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]=" registerModel.email">
+
+    </mat-form-field>
+    <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]=" registerModel.password">
+
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="register()">Signup</button>
+</div>
