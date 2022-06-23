@@ -17,7 +17,7 @@ export class QuizController {
   async quizSet(@Req() req:any,
     @Res() res:any){
       
-     
+    console.log(req.body,'req params:::::::: ')
     const quizSet=await this.quizService.getQuizSet(req.body)
     
     res.json({status:200,data:quizSet })

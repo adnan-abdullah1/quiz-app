@@ -9,12 +9,16 @@ import { QuizService } from 'src/app/service/quiz.service';
 })
 export class LoginComponent implements OnInit {
   authModel:any={}
+
   constructor(private router:Router, private quizService:QuizService) { }
 
   ngOnInit(): void {
   }
   login(){
+
     this.quizService.login(this.authModel).subscribe((res:any)=>{
+     
+      localStorage.setItem('userID',res.user._id)
       this.router.navigate(['attempt-quiz'])
     },(err:any)=>{
     

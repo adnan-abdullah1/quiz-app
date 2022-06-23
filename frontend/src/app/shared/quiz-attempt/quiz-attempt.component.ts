@@ -10,38 +10,47 @@ export class QuizAttemptComponent implements OnInit {
   quizSet:any
   skip:number=0
   noOfQuestions:Number= 0
+  response:any={chosenOption:''}
  
-  constructor( private quizService:QuizService) { }
+  constructor( private quizService:QuizService,) { }
   
   ngOnInit(): void {
-    
-  this.getQuizSet(false)
+   
+  this.getQuizSet()
+  
   }
-getQuizSet(previousQuesion:Boolean){
-  const organizerName=localStorage.getItem('organizerName')
-    const eventName=localStorage.getItem('eventName')
-    
-    if(previousQuesion && this.skip!=0){
-      this.skip-=1
-    }
-    else if (!previousQuesion && this.skip!=2){
-      console.log('fired')
-      this.skip+=1;
+getQuizSet(){
+  
+  
+
+  const organizerName=localStorage.getItem('organizerName');
+    const eventName=localStorage.getItem('eventName');
+    const userID=localStorage.getItem('userID')
+    this.response.questionID=this.quizSet?._id;
+    this.response.userID=userID
+    this.response.organizerName=organizerName;
+    this.response.eventName=eventName;
+    console.log('respone ',this.response)
+    if(this.skip!=2){
+      this.skip++;
     }
     // else {
-    //   this.skip=0
+    //   // this.skip=0;
     // }
+    
+    
    
     const requestedQuiz={"organizerName":organizerName,"eventName":eventName,"skip":this.skip}
-    console.log(this.skip)
-  this.quizService.getQuizSet(requestedQuiz).subscribe((res:any)=>{
+  
+  this.quizService.getQuizSet(requestedQuiz,this.response).subscribe((res:any)=>{
     
     this.quizSet=res.data
+    this.response={}
     
     
   
     })}
-    
+  
       
     
 }

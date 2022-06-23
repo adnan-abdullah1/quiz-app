@@ -25,21 +25,21 @@
             <p><span style="color: red;">Q1:</span> {{quizSet?.question}}?</p>
         </div>
         <div class="radio-options">
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="response.chosenOption">
                 <!-- <mat-label>1</mat-label> -->
-                <mat-radio-button value="1" style="font-size: 17px;">{{quizSet?.options[0]}}</mat-radio-button>
+                <mat-radio-button value="1" style="font-size: 17px;" [value]="quizSet?.options[0]">{{quizSet?.options[0]}}</mat-radio-button>
                 &nbsp;&nbsp;
-                <mat-radio-button value="2" style="font-size: 17px;">{{quizSet?.options[1]}}</mat-radio-button>
+                <mat-radio-button value="2" style="font-size: 17px;" [value]="quizSet?.options[1]">{{quizSet?.options[1]}}</mat-radio-button>
                 <br><br>
-                <mat-radio-button value="1" style="font-size: 17px;">{{quizSet?.options[2]}}</mat-radio-button>
+                <mat-radio-button value="1" style="font-size: 17px;" [value]="quizSet?.options[2]">{{quizSet?.options[2]}}</mat-radio-button>
                 &nbsp;&nbsp;
-                <mat-radio-button value="2" style="font-size: 17px;">{{quizSet?.options[3]}}</mat-radio-button>
+                <mat-radio-button value="2" style="font-size: 17px;" [value]="quizSet?.options[3]">{{quizSet?.options[3]}}</mat-radio-button>
             </mat-radio-group>
         </div>
-        <button mat-raised-button color="primary" [disabled]="this.skip==2" (click)="getQuizSet(false)">Save & Next</button>
-        <button mat-raised-button color="primary" [disabled]="this.skip==0" (click)="getQuizSet(true)">Back</button>
+        <button mat-raised-button color="primary" (click)="getQuizSet()">Save & Next</button>
+        <!-- <button mat-raised-button color="primary" [disabled]="this.skip==0" (click)="getQuizSet()">Back</button> -->
 
-        <button mat-raised-button color="primary" style="float: left;">Skip & Next</button>
+        <!-- <button mat-raised-button color="primary" style="float: left;">Skip & Next</button> -->
         <!-- <button mat-raised-button color="primary skip-question">Skip & Next</button> -->
 
     </mat-card>
