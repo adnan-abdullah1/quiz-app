@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from 'src/app/service/quiz.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-quiz-attempt',
@@ -7,11 +8,16 @@ import { QuizService } from 'src/app/service/quiz.service';
   styleUrls: ['./quiz-attempt.component.scss']
 })
 export class QuizAttemptComponent implements OnInit {
-  quizSet:any
-  skip:number=0
-  noOfQuestions:Number= 0
-  response:any={chosenOption:''}
+  quizSet:any={}
+  skip:number=-1
  
+  response:any={chosenOption:''}
+  submitButton:Boolean=false
+  result:any;
+   organizerName=localStorage.getItem('organizerName');
+   eventName=localStorage.getItem('eventName');
+   userID=localStorage.getItem('userID')
+
   constructor( private quizService:QuizService,) { }
   
   ngOnInit(): void {
@@ -23,24 +29,28 @@ getQuizSet(){
   
   
 
-  const organizerName=localStorage.getItem('organizerName');
-    const eventName=localStorage.getItem('eventName');
-    const userID=localStorage.getItem('userID')
-    this.response.questionID=this.quizSet?._id;
-    this.response.userID=userID
-    this.response.organizerName=organizerName;
-    this.response.eventName=eventName;
-    console.log('respone ',this.response)
-    if(this.skip!=2){
-      this.skip++;
-    }
-    // else {
-    //   // this.skip=0;
-    // }
-    
-    
    
-    const requestedQuiz={"organizerName":organizerName,"eventName":eventName,"skip":this.skip}
+    const noOfQuesitons:any=localStorage.getItem('noOfQuestions')
+    this.response.questionID=this.quizSet?._id;
+    this.response.userID=this.userID
+    this.response.organizerName=this.organizerName;
+    this.response.eventName=this.eventName;
+    
+    if(this.skip<parseInt(noOfQuesitons)-1)
+    {
+      
+      this.skip++;
+      console.log(true,this.skip)
+    }
+    else{
+      this.submitButton=true
+    }
+  //  else{
+  //   console.log('else')
+  //   this.skip=0;
+  //  }
+   
+    const requestedQuiz={"organizerName":this.organizerName,"eventName":this.eventName,"skip":this.skip}
   
   this.quizService.getQuizSet(requestedQuiz,this.response).subscribe((res:any)=>{
     
@@ -50,6 +60,21 @@ getQuizSet(){
     
   
     })}
+
+    submitResponse(){
+      const resultCred={
+        "userID": this.userID,
+        "eventName": this.eventName,
+        "organizerName": this.organizerName
+      }
+      
+      this.quizService.getResult(resultCred).subscribe((res:any)=>{
+        const score=res.score;
+        const totalQuestions=res.totalQuestions
+        const passPercentage=Math.round((score/totalQuestions)*100)
+        Swal.fire(`scored ${score} out of ${totalQuestions} questions,
+         total obtained percentage is ${passPercentage}%`)
+      })}
   
       
     

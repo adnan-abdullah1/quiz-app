@@ -22,6 +22,7 @@ export class QuizInfoComponent implements OnInit {
    
     localStorage.setItem('organizerName',organizerName)
     localStorage.setItem('eventName',eventName)
+    localStorage.setItem('noOfQuestions', this.data.noOfQuestions)
     console.log(localStorage.getItem('id')," received from local storage")
 
   }

@@ -25,4 +25,7 @@ export class QuizService {
   register(registerModel:any){
     return this.http.post('http://localhost:3000/auth/register',registerModel)
   }
+  getResult(resultCred:any){
+   return this.http.post('http://localhost:3000/quiz/get-quiz-result',resultCred)
+  }
 }

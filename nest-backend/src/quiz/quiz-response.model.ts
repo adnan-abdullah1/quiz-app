@@ -10,6 +10,8 @@ export const RespnseSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Auth',
     },
+    eventName:String,
+    organizerName:String,
     chosenOption:{type:String,default:null},
     result:{type:Boolean},
     correctAnswer:Boolean,
@@ -17,6 +19,8 @@ export const RespnseSchema = new mongoose.Schema({
 })
 
 export interface ResponseModel extends mongoose.Document{
+    eventName:String;
+    organizerName:String;
     chosenOption:string;
     correctAnswer:Boolean;
     questionID:any;
