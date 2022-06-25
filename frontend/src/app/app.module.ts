@@ -19,9 +19,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { QuizAttemptComponent } from './shared/quiz-attempt/quiz-attempt.component'
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
-
+import { AdminComponent } from './admin/admin.component';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
+    AdminComponent,
     LoginComponent,
     SignupComponent,
     AuthComponent,
@@ -31,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     QuizAttemptComponent
   ],
   imports: [
+    MatSelectModule,
     CommonModule,
     MatRadioModule,
     MatButtonModule,

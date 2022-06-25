@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
+  quizSet:any={};
+  quizInfo:Boolean=false
   constructor() { }
 
   ngOnInit(): void {
   }
-
+submit(){
+  this.quizInfo=true
+}
 }
