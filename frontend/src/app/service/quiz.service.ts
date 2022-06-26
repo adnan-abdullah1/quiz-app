@@ -27,5 +27,9 @@ export class QuizService {
   }
   getResult(resultCred:any){
    return this.http.post('http://localhost:3000/quiz/get-quiz-result',resultCred)
+
+  }
+  addQuiz(quizModel:any){
+    return this.http.post('http://localhost:3000/admin/add-quiz',quizModel)
   }
 }

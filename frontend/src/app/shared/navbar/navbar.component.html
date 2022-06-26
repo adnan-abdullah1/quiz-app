@@ -1,0 +1,25 @@
+<mat-toolbar>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button *ngIf='isAdmin=="true"' class="example-icon" aria-label="Example icon-button with menu icon" (click)="editQuizs()">
+      <i class="fa fa-edit fa-2x"  aria-hidden="true"></i>
+    </button>
+
+    <!-- <span>My App</span> -->
+    <span class="example-spacer"></span>
+    <button *ngIf="isLoggedIn=='yes'; " mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="logout()">
+     <i class="fa fa-sign-out fa-2x" aria-hidden="true" ></i>
+    </button>
+    <button *ngIf="isLoggedIn!='yes'; " mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="login()">
+   
+      Sign IN
+
+    </button>
+
+</mat-toolbar>

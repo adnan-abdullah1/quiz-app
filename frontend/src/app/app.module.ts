@@ -19,20 +19,29 @@ import {MatButtonModule} from '@angular/material/button';
 import { QuizAttemptComponent } from './shared/quiz-attempt/quiz-attempt.component'
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
-import { AdminComponent } from './admin/admin.component';
+import { AddQuizComponent } from './admin/add-quiz/add-quiz.component';
 import {MatSelectModule} from '@angular/material/select';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { ManageQuizsComponent } from './admin/manage-quizs/manage-quizs.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
-    AdminComponent,
+    AddQuizComponent,
     LoginComponent,
     SignupComponent,
     AuthComponent,
     QuizInfoComponent,
     QuizListComponent,
     AppComponent,
-    QuizAttemptComponent
+    QuizAttemptComponent,
+    NavbarComponent,
+    ManageQuizsComponent
   ],
   imports: [
+    MatSlideToggleModule,
+    MatToolbarModule,
     MatSelectModule,
     CommonModule,
     MatRadioModule,
@@ -46,7 +55,8 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

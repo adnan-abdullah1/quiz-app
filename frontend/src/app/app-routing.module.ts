@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth/auth.component';
 import {QuizListComponent} from './shared/quiz-list/quiz-list.component'
 import { QuizAttemptComponent } from './shared/quiz-attempt/quiz-attempt.component';
-import {AdminComponent} from './admin/admin.component'
+import { AddQuizComponent } from './admin/add-quiz/add-quiz.component';
+import { ManageQuizsComponent } from './admin/manage-quizs/manage-quizs.component';
+
 const routes: Routes = [
   {path:'quiz-list',component:QuizListComponent},
-  {path:'start-quiz',component:AuthComponent},
+  {path:'login',component:AuthComponent},
   {path:'attempt-quiz',component:QuizAttemptComponent},
-  {path:'add-quiz',component:AdminComponent},
-
+  {path:'admin/add-quiz',component:AddQuizComponent},
+  {path:'admin/manage-quizs',component:ManageQuizsComponent}
 ];
 
 @NgModule({

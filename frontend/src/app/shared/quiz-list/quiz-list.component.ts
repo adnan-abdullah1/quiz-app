@@ -13,7 +13,7 @@ export class QuizListComponent implements OnInit {
   constructor(private QuizService:QuizService,private dialog:MatDialog) { }
 
   ngOnInit(): void {
-    localStorage.clear()
+    // localStorage.clear()
     this.getAllQuizs();
     
     }

@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="subcontainer">
+        <h2 *ngFor="let quiz of quizs;  index as i">
+            event Name: {{quizs[i]?._id?.organizerName}}, organizer: {{quizs[i]?._id?.eventName}}
+            <!-- <button mat-raised-button color="primary" (click)="quizInfo(i)">Take Quiz</button> -->
+            <mat-slide-toggle class="example-margin" color="blue">
+                Make Exam Live
+            </mat-slide-toggle>
+        </h2>
+    </div>
+</div>

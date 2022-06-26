@@ -5,6 +5,7 @@ export const AuthSchema = new mongoose.Schema({
     email:String,
     password:String,
     isAdmin:{type:Boolean,default:false}
+    
 })
 
 export interface AuthModel extends mongoose.Document{

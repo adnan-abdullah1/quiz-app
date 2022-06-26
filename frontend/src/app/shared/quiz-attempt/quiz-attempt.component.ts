@@ -69,11 +69,14 @@ getQuizSet(){
       }
       
       this.quizService.getResult(resultCred).subscribe((res:any)=>{
+        console.log(res,'questions')
         const score=res.score;
         const totalQuestions=res.totalQuestions
         const passPercentage=Math.round((score/totalQuestions)*100)
         Swal.fire(`scored ${score} out of ${totalQuestions} questions,
          total obtained percentage is ${passPercentage}%`)
+      },(err)=>{
+        Swal.fire(err)
       })}
   
       

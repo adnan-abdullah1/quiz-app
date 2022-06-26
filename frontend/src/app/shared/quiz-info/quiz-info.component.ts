@@ -29,9 +29,11 @@ export class QuizInfoComponent implements OnInit {
   startQuiz(){
     this.data.dialog.closeAll()
     // document.cookie.'name'=this.data._id
-
-    this.router.navigate(['/start-quiz'],
-    )
+    const isLoggedIn=localStorage.getItem('isLoggedIn')
+    if(isLoggedIn=='yes')
+    this.router.navigate(['attempt-quiz'])
+    else
+    this.router.navigate(['/login'])
 
   }
 
