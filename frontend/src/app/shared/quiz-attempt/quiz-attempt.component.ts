@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
 import { QuizService } from 'src/app/service/quiz.service';
 import Swal from 'sweetalert2';
 
@@ -18,7 +19,8 @@ export class QuizAttemptComponent implements OnInit {
    eventName=localStorage.getItem('eventName');
    userID=localStorage.getItem('userID')
 
-  constructor( private quizService:QuizService,) { }
+  constructor( private quizService:QuizService,
+    private router:Router) { }
   
   ngOnInit(): void {
    
@@ -31,7 +33,7 @@ getQuizSet(){
 
    
     const noOfQuesitons:any=localStorage.getItem('noOfQuestions')
-    this.response.questionID=this.quizSet?._id;
+    this.response.questionID=this.quizSet[0]?._id;
     this.response.userID=this.userID
     this.response.organizerName=this.organizerName;
     this.response.eventName=this.eventName;
@@ -51,9 +53,9 @@ getQuizSet(){
   //  }
    
     const requestedQuiz={"organizerName":this.organizerName,"eventName":this.eventName,"skip":this.skip}
-  
+   console.log(this.response,'response ..')
   this.quizService.getQuizSet(requestedQuiz,this.response).subscribe((res:any)=>{
-    
+    console.log(this.quizSet,'quizSet')
     this.quizSet=res.data
     this.response={}
     
@@ -75,6 +77,7 @@ getQuizSet(){
         const passPercentage=Math.round((score/totalQuestions)*100)
         Swal.fire(`scored ${score} out of ${totalQuestions} questions,
          total obtained percentage is ${passPercentage}%`)
+        this.router.navigate(['quiz-list'])
       },(err)=>{
         Swal.fire(err)
       })}

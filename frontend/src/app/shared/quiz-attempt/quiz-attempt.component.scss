@@ -4,7 +4,8 @@
 // }
 .question-time {
     // border: 2px solid red;
-    height: 15vh;
+    margin-bottom: 0;
+    height: 8vh;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -13,6 +14,8 @@
 }
 
 .quiz-info {
+    margin-left: 100px;
+    width: 350px;
     margin-top: 20px;
     // border: 2px solid red;
     display: flex;
@@ -32,6 +35,13 @@
     align-items: flex-start
 }
 
+.info {
+    margin-top: 2px;
+    display: flex;
+    // justify-content: baseline;
+    align-items: flex-end
+}
+
 .container {
     font-size: 12.5px;
     width: 100vw;
@@ -45,6 +55,7 @@
 
 .example-card {
     // border: 2px solid green;
+    border: 1px solid gray;
     width: 81%;
     height: 85%;
     // margin-left: 25px;
@@ -82,7 +93,7 @@
 }
 
 .noOfQuestions {
-    width: 130px;
+    width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,7 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     margin-top: 20px;
-    height: 100vh;
+    height: 95vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
 }

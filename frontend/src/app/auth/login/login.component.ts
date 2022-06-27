@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isAdmin',res.user.isAdmin)
    
       Swal.fire('logged In')
-      this.router.navigate(['attempt-quiz'])
+      //...........
+      
+      this.router.navigate(['quiz-list'])
       
     },(err:any)=>{
     

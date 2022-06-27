@@ -26,10 +26,15 @@ export class QuizService
 
     async getQuizSet(partQuiz:any){
         
-       
-        const quizSet=await this.QuizModel.findOne(partQuiz).limit(1).skip(partQuiz.requestedQuiz.skip)
-       
-                const questionID=partQuiz.response.questionID
+    //   console.log(partQuiz,'par quiz')
+        const organizerName=partQuiz.requestedQuiz.organizerName;
+        const eventName=partQuiz.requestedQuiz.eventName
+        const skip=partQuiz.requestedQuiz.skip
+        console.log(organizerName,eventName,skip)
+        const quizSet=await this.QuizModel.find({"organizerName":organizerName,
+        "eventName":eventName}).limit(1).skip(skip)
+        console.log(quizSet,'quiz Set')
+        const questionID=partQuiz.response.questionID
         if(questionID){           
           const checkAnswer= await this.QuizModel.findById(questionID)
 
@@ -58,9 +63,9 @@ export class QuizService
         let  score=0;
         const quizResult=await this.ResponseModel.find({'userId':userID,
             'eventName':eventName,'organizerName':organizerName})
-            console.log(quizResult,'(((((((((((_')
+           
         quizResult.forEach((resp:any)=>{
-            console.log(resp.result,'..............')
+          
             if(resp.result==true){
 
                 score++;
@@ -69,7 +74,7 @@ export class QuizService
                
             }
         })
-        console.log({"score":score,"total questions":quizResult.length})
+       
          // save attempted quiz Response in attempted Quiz schema
             //so user cant again take quiz
             const attemptedQuiz={

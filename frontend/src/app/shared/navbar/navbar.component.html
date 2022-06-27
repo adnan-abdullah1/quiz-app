@@ -4,12 +4,22 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>home</mat-icon>
-    </button>
-    <button *ngIf='isAdmin=="true"' class="example-icon" aria-label="Example icon-button with menu icon" (click)="editQuizs()">
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="home()">
+          <mat-icon>home</mat-icon>
+        </button>
+
+    <button *ngIf='isAdmin=="true"' mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="editQuizs()">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+    <!-- <button class="example-icon" aria-label="Example icon-button with menu icon" (click)="editQuizs()">
       <i class="fa fa-edit fa-2x"  aria-hidden="true"></i>
-    </button>
+      <mat-icon>
+        edit
+      </mat-icon>
+    </button> -->
+
 
     <!-- <span>My App</span> -->
     <span class="example-spacer"></span>

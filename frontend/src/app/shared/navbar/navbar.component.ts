@@ -16,17 +16,24 @@ export class NavbarComponent implements OnInit {
   quizs:any;
   ngOnInit(): void {
   console.log(this.isAdmin)
+  
   }
   logout(){
     localStorage.clear()
-    this.router.navigate(['/quiz-list'])
+    this.ngOnInit();
   }
   editQuizs(){
     
     this.router.navigate(['/admin/manage-quizs'])
   
+  
   }
   login(){
     this.router.navigate(['/login'])
   }
+  home(){
+    this.router.navigate(['/quiz-list'])
+  }
+  
 }
+
