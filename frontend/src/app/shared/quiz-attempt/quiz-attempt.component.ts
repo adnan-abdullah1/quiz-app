@@ -25,10 +25,31 @@ export class QuizAttemptComponent implements OnInit {
   ngOnInit(): void {
    
   this.getQuizSet()
-  
+  this.timer()
+ 
   }
-getQuizSet(){
   
+  minutes:any=localStorage.getItem('noOfQuestions')
+  
+  seconds=parseInt(this.minutes)*60
+  remainSeconds=0;
+  timer()
+  {
+ 
+  
+  
+  const intervalId = setInterval(() => {
+    this.seconds = this.seconds - 1;
+    this.minutes=Math.floor(this.seconds/60);
+    this.remainSeconds=this.seconds%60;
+    console.log(this.seconds)
+    if(this.seconds === 0){ clearInterval(intervalId) ; this.submitResponse()}
+}, 1000)
+
+}
+
+getQuizSet(){
+   
   
 
    
@@ -52,11 +73,13 @@ getQuizSet(){
   //   this.skip=0;
   //  }
    
-    const requestedQuiz={"organizerName":this.organizerName,"eventName":this.eventName,"skip":this.skip}
+    const requestedQuiz={"organizerName":this.organizerName,"eventName":this.eventName,
+    "skip":this.skip}
    console.log(this.response,'response ..')
   this.quizService.getQuizSet(requestedQuiz,this.response).subscribe((res:any)=>{
     console.log(this.quizSet,'quizSet')
     this.quizSet=res.data
+    
     this.response={}
     
     
@@ -64,6 +87,7 @@ getQuizSet(){
     })}
 
     submitResponse(){
+      this.skip=0;
       const resultCred={
         "userID": this.userID,
         "eventName": this.eventName,

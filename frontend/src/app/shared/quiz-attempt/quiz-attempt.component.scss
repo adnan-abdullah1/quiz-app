@@ -17,6 +17,7 @@
     margin-left: 100px;
     width: 350px;
     margin-top: 20px;
+    margin-bottom: 2px;
     // border: 2px solid red;
     display: flex;
     flex-direction: column;
@@ -57,13 +58,13 @@
     // border: 2px solid green;
     border: 1px solid gray;
     width: 81%;
-    height: 85%;
+    height: 87%;
     // margin-left: 25px;
     // max-width: 400px;
 }
 
 .example {
-    width: 82%;
+    width: 83%;
     height: 40%;
     display: flex;
     justify-content: space-between;
@@ -75,21 +76,22 @@
     padding-top: 40px;
     margin-top: 5px;
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
+    font-weight: 450;
+    font-size: 17px;
 }
 
 .time {
     border-radius: 40px;
     width: 50px;
     height: 50px;
-    color: blue;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: orange;
+    background-color: rgb(10, 8, 8);
 }
 
 .noOfQuestions {

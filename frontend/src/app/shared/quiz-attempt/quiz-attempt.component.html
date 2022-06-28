@@ -2,9 +2,9 @@
 <div class="question-time ">
 
     <div class="example">
-        <mat-card class="noOfQuestions ">{{quizSet?.noOfQuestions}} total questions</mat-card>
+        <mat-card class="noOfQuestions ">{{quizSet[0]?.noOfQuestions}} questions</mat-card>
         <mat-card class="noOfQuestions ">{{this.skip}} Attempted</mat-card>
-        <mat-card class="time ">{{quizSet?.time}}:00</mat-card>
+        <mat-card class="time ">{{minutes}}:{{remainSeconds}}</mat-card>
 
     </div>
 </div>
