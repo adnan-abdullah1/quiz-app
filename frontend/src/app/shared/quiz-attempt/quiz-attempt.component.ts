@@ -35,9 +35,6 @@ export class QuizAttemptComponent implements OnInit {
   remainSeconds=0;
   timer()
   {
- 
-  
-  
   const intervalId = setInterval(() => {
     this.seconds = this.seconds - 1;
     this.minutes=Math.floor(this.seconds/60);
