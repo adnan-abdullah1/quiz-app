@@ -1,0 +1,86 @@
+.title {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-field {
+    // border: 2px solid red;
+    height: 70px;
+    width: 500px;
+}
+
+.container {
+    // width: 100vw;
+    background-image: url('../../../../assets/add-quiz.jpg');
+    height: 89.99vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-question {
+    width: 36.5vw;
+    display: flex;
+}
+
+button {
+    margin-top: 0px;
+    width: 200px;
+}
+
+.text-area {
+    width: 50vw;
+    // height: 10vh;
+}
+
+// .footer {
+//     margin-top: 2px;
+//     border: 2px solid red;
+//     height: 10vh;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-family: Arial, Helvetica, sans-serif;
+//     font-size: larger;
+//     font-weight: 400;
+//     background-color: cadetblue;
+// }
+// .mat-form-field-appearance-outline .mat-form-field-outline {
+//     color: red;
+// }
+// /* Font color */
+input.mat-input-element {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: blueviolet;
+    }
+    mat-form-field {
+        .mat-hint,
+        input,
+         ::placeholder,
+        .mat-form-field-label {
+            color: black;
+        }
+    }
+}
+
+.file-input {
+    display: none;
+}
+
+#file {
+    width: 20%;
+}
+
+.two-options {
+    display: flex;
+    // justify-content: space-around;
+    width: 51%;
+}

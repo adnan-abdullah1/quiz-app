@@ -2,7 +2,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "types":[],
     "baseUrl": "./",
+    "paths": {
+      "tslib" : ["path/to/node_modules/tslib/tslib.d.ts"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -27,7 +31,6 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "noImplicitAny": false
+    "strictTemplates": true
   }
 }

@@ -38,13 +38,13 @@ export class QuizService
         if(questionID){           
           const checkAnswer= await this.QuizModel.findById(questionID)
 
-            if(checkAnswer.rightAnswer==partQuiz.response.chosenOption){
-                partQuiz.response.result=true;
+            // if(checkAnswer.rightAnswer==partQuiz.response.chosenOption){
+            //     partQuiz.response.result=true;
           
-              }
-             else{
-                partQuiz.response.result=false;
-            }
+            //   }
+            //  else{
+            //     partQuiz.response.result=false;
+            // }
                const response= new this.ResponseModel(partQuiz.response)
        
             response.save((err)=>{

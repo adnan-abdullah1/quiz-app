@@ -7,14 +7,8 @@ import { AdminModule } from './admin/admin.module';
 import {QuizModule} from './quiz/quiz.module'
 
 @Module({
-  // imports: [ QuizModule,
-  //   MongooseModule.forRoot('mongodb://localhost:27017/quiz',{
-  //     connectionName: 'quiz',
-  //   }),
-   
-   
-  // ],
-  imports: [QuizModule,AdminModule,AuthModule,
+  
+  imports: [AdminModule,
     MongooseModule.forRootAsync({
       useFactory: () => ({
         uri: 'mongodb://localhost:27017/quiz',

@@ -7,9 +7,14 @@ export const QuizSchema=new mongoose.Schema({
     time:Number,
     noOfQuestions:Number,
     questionNo: Number,
-    question: {type:String},
-    options: [],
-    rightAnswer: {type:String},
+    questionBank: [
+      {
+      questionType:{type:String},
+      question:{type:String},
+      rightAnswer:{type:String},
+      options:[String]
+      },],
+   
     isExamLive: { type: Boolean, default: false }
 });
 
@@ -18,11 +23,8 @@ export interface QuizModel extends mongoose.Document{
   eventName:string,
   time:Number,
   noOfQuestions:Number,
-  questionNo:Number,
   quizCreatedAt:Date,
-  questions:string,
-  options:[],
-  rightAnswer:String,
+  questionBank:[],
   isExamLive:Boolean
   
 }
