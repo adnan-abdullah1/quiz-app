@@ -1,12 +1,12 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" hasBackdrop="unset">
-        <mat-nav-list style="width:15vw;">
+        <mat-nav-list #sidenav>
             <a mat-list-item>Home</a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <div style="height: 90vh;" class="navbar">
-
+            <!-- <app-home></app-home> -->
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+.inner {
+    color: white;
+    padding: 12px;
+}
+
+.container {
+    border: 2px solid red;
+    height: 89.50vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.box1 {
+    border: 2px solid gray;
+    width: 70vw;
+}
+
+.box2 {
+    width: calc(30vw);
+    border: 2px solid green;
+}

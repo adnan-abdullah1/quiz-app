@@ -3,21 +3,21 @@
         <h4 class="title">Add Quiz</h4>
         <mat-form-field class="form-field mdInput" appearance="outline">
             <mat-label>Organisation Name</mat-label>
-            <input matInput required="true" [(ngModel)]="quizModel.organizerName">
+            <input matInput required="true" required minlength="4" [(ngModel)]="quizModel.organizerName" required="true">
         </mat-form-field>
         <mat-form-field class="form-field" appearance="outline">
             <mat-label>Event Name</mat-label>
-            <input matInput required="true" [(ngModel)]="quizModel.eventName">
+            <input matInput required="true" [(ngModel)]="quizModel.eventName" required="true">
         </mat-form-field>
         <div class="time-question">
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label>No of Questions</mat-label>
-                <input matInput type="number" required="true" [(ngModel)]="quizModel.noOfQuestions">
+                <input matInput type="number" required="true" [(ngModel)]="quizModel.noOfQuestions" required="true">
             </mat-form-field>
-            <mat-form-field class="form-field" style="margin-left: 9px;" appearance="outline">
+            <mat-form-field class="form-field" class="time" appearance="outline">
                 <mat-label>Time
                 </mat-label>
-                <input matInput type="number" required="true" [(ngModel)]="quizModel.time">
+                <input matInput type="number" required="true" [(ngModel)]="quizModel.time" required="true">
             </mat-form-field>
 
         </div>
@@ -37,9 +37,9 @@
 <section *ngIf="!quizInfo">
     <div class="container">
 
-        <mat-form-field class="example-full-width text-area" appearance="outline">
+        <mat-form-field class="example-full-width text-area mobile-height" appearance="outline">
             <mat-label>Enter Question</mat-label>
-            <textarea matInput [(ngModel)]="question"></textarea>
+            <textarea matInput [(ngModel)]="question" required="true"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline" class="form-field text-area">
             <mat-label>Choose an option</mat-label>
@@ -54,25 +54,25 @@
         </mat-form-field>
         <div class="two-options">
             <mat-form-field class="form-field text-area" style="margin-right: 3px;" appearance="outline">
-                <mat-label>Event Name</mat-label>
-                <input matInput required="true" [(ngModel)]="optionModel.option1">
+                <mat-label>Option 1</mat-label>
+                <input matInput required="true" [(ngModel)]="optionModel.option1" required="true">
             </mat-form-field>
             <mat-form-field class="form-field text-area" appearance="outline">
-                <mat-label>Event Name</mat-label>
-                <input matInput required="true" [(ngModel)]="optionModel.option2">
+                <mat-label>Option 2</mat-label>
+                <input matInput required="true" [(ngModel)]="optionModel.option2" required="true">
             </mat-form-field>
         </div>
         <div class="two-options">
             <mat-form-field class="form-field text-area" style="margin-right:3px" appearance="outline">
-                <mat-label>Event Name</mat-label>
-                <input matInput required="true" [(ngModel)]="optionModel.option3">
+                <mat-label>Option 3</mat-label>
+                <input matInput required="true" [(ngModel)]="optionModel.option3" required="true">
             </mat-form-field>
             <mat-form-field class="form-field text-area" appearance="outline">
-                <mat-label>Event Name</mat-label>
-                <input matInput required="true" [(ngModel)]="optionModel.option4">
+                <mat-label>Option 4</mat-label>
+                <input matInput required="true" [(ngModel)]="optionModel.option4" required="true">
             </mat-form-field>
         </div>
-        <input id="file" type="file">
+        <input id="file" type="file" *ngIf="questionType!='text'">
         <mat-form-field appearance="outline" class="form-field text-area">
             <mat-label>Choose an option</mat-label>
             <mat-select [(ngModel)]=questionBank.rightAnswer>
@@ -84,7 +84,12 @@
 
             </mat-select>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        <button mat-raised-button color="primary" (click)="submit()" *ngIf="!enablePreview">Submit</button>
+        <div class="final-preview">
+            <button mat-raised-button color="primary" (click)="preview()" *ngIf="enablePreview">Preview</button>
+            <button mat-raised-button color="primary" (click)="finalSubmit()" *ngIf="enablePreview">Final Submit</button>
+
+        </div>
     </div>
 
 </section>

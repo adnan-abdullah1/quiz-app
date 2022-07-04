@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
-// import { QuizModel } from './quiz/quiz.model';
-import { QuizModule } from './quiz/quiz.module';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import {QuizModel} from './quiz/quiz.model'
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
+  constructor(@InjectModel('Quiz') private readonly QuizModel:Model<QuizModel>){}
+ async getAllQuizs(){
+    const allQuizs=await this.QuizModel.find({})
+    return allQuizs;
+ }
   // async getAllQuizs(): Promise<any>{
    
   // }

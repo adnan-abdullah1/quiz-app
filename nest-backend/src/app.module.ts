@@ -5,15 +5,19 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import {QuizModule} from './quiz/quiz.module'
+import { QuizSchema } from './quiz/quiz.model';
 
 @Module({
   
-  imports: [AdminModule,
+  imports: [AdminModule,AuthModule,
     MongooseModule.forRootAsync({
       useFactory: () => ({
         uri: 'mongodb://localhost:27017/quiz',
       }),
     }),
+    MongooseModule.forFeature([
+      {name:'Quiz',schema:QuizSchema}
+    ])
    
   ],
   controllers: [AppController],

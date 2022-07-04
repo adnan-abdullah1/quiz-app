@@ -10,6 +10,11 @@
     width: 500px;
 }
 
+textarea {
+    font-size: large;
+    height: 100px;
+}
+
 .container {
     // width: 100vw;
     background-image: url('../../../../assets/add-quiz.jpg');
@@ -21,8 +26,15 @@
 }
 
 .time-question {
-    width: 36.5vw;
+    max-width: inspect($value: 500px);
     display: flex;
+    flex-direction: row;
+    // align-items: center;
+    justify-content: space-around;
+}
+
+.time {
+    margin-left: 9px;
 }
 
 button {
@@ -33,6 +45,15 @@ button {
 .text-area {
     width: 50vw;
     // height: 10vh;
+}
+
+final-preview {
+    display: flex;
+}
+
+mat-label {
+    font-size: 17px;
+    color: rgb(57, 3, 3);
 }
 
 // .footer {
@@ -83,4 +104,26 @@ input.mat-input-element {
     display: flex;
     // justify-content: space-around;
     width: 51%;
+}
+
+@media screen and (max-width:600px) {
+    .form-field {
+        // border: 2px solid red;
+        height: 70px;
+        width: 300px;
+    }
+    .time-question {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+    .time {
+        margin-left: 0;
+    }
+    .text-area {
+        width: 90vw;
+    }
+    .mobile-height {
+        height: 90px;
+    }
 }

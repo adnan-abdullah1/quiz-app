@@ -1,3 +1,17 @@
 * {
     margin-top: 0px;
 }
+
+::ng-deep {
+    .mat-drawer {
+        width: 15vw;
+    }
+}
+
+@media screen and (max-width:600px) {
+     ::ng-deep {
+        .mat-drawer {
+            width: 50vw;
+        }
+    }
+}
