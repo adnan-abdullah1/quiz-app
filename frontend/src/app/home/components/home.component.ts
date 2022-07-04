@@ -7,17 +7,15 @@ import { HomeService } from '../service/home.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  homeData=null;
+  allQuizs:any;
   constructor(private readonly homeService:HomeService) { }
 
   ngOnInit(): void {
-   setTimeout(()=>{
     this.home()
-   },1000)
   }
 home(){
   this.homeService.home().subscribe((res:any)=>{
-    this.homeData=res;
+    this.allQuizs=res;
     console.log(res)
   })
 }

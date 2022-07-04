@@ -21,7 +21,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/components/home.component';
 import { ToastrModule} from 'ngx-toastr';
 
-
 @NgModule({
   declarations: [
  
@@ -35,6 +34,7 @@ import { ToastrModule} from 'ngx-toastr';
 
   ],
   imports: [
+  
     ToastrModule.forRoot(),
     MatProgressSpinnerModule,
     HttpClientModule,

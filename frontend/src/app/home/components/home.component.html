@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="!homeData">
+<div class="wrapper" *ngIf="!allQuizs">
     <div class="inner">
 
         <mat-spinner mode="indeterminate" color=""></mat-spinner>
@@ -7,8 +7,11 @@
 <!-- <h1 *ngIf="homeData" style="font-size: 50px;">Data Loaded</h1> -->
 
 <div class="container">
-    <div class="box1">
-        <h1>List all quizs here</h1>
+    <div class="box1" style="margin-top: 10px;">
+        <li *ngFor="let quiz of allQuizs" style="font-size:20px ;background-color:rgb(151, 148, 148); height:37px">
+            {{quiz.eventName}}
+            <button mat-raised-button style="float: right; margin-right:10px ;width:50px">View</button>
+        </li>
     </div>
     <div class="box2">
         <h1>upcoming quizs with date</h1>

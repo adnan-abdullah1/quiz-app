@@ -1,10 +1,12 @@
 <section *ngIf="quizInfo">
     <div class="container">
         <h4 class="title">Add Quiz</h4>
+
         <mat-form-field class="form-field mdInput" appearance="outline">
             <mat-label>Organisation Name</mat-label>
-            <input matInput required="true" required minlength="4" [(ngModel)]="quizModel.organizerName" required="true">
+            <input matInput required="true" required minlength="2" [(ngModel)]="quizModel.organizerName" required="true" minlength="2">
         </mat-form-field>
+
         <mat-form-field class="form-field" appearance="outline">
             <mat-label>Event Name</mat-label>
             <input matInput required="true" [(ngModel)]="quizModel.eventName" required="true">
@@ -30,6 +32,7 @@
                 <mat-option value="option3">Mixed</mat-option>
             </mat-select>
         </mat-form-field>
+
         <button mat-raised-button color="primary" (click)="next()">Next</button>
     </div>
 
@@ -42,7 +45,7 @@
             <textarea matInput [(ngModel)]="question" required="true"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline" class="form-field text-area">
-            <mat-label>Choose an option</mat-label>
+            <mat-label>Choose question type</mat-label>
             <mat-select [(ngModel)]=questionType>
                 <mat-option value="text">Text</mat-option>
                 <mat-option value="video">Video</mat-option>
@@ -72,14 +75,17 @@
                 <input matInput required="true" [(ngModel)]="optionModel.option4" required="true">
             </mat-form-field>
         </div>
-        <input id="file" type="file" *ngIf="questionType!='text'">
+        <!-- <input id="file" type="file" *ngIf="questionType!='text'"> -->
+        <input type="file" class="form-control" name="myfile" accept="image/*" (change)="changeProfileImg($event)" multiple *ngIf="questionType=='image'" />
+
         <mat-form-field appearance="outline" class="form-field text-area">
             <mat-label>Choose an option</mat-label>
             <mat-select [(ngModel)]=questionBank.rightAnswer>
                 <mat-option [value]="optionModel.option1">{{optionModel.option1}}</mat-option>
-                <!-- <mat-option (value)="text">{{optionModel.option2}}</mat-option>
-                <mat-option (value)="text">{{optionModel.option3}}</mat-option>
-                <mat-option (value)="text">{{optionModel.option4}}</mat-option> -->
+                <mat-option [value]="optionModel.option2">{{optionModel.option2}}</mat-option>
+                <mat-option [value]="optionModel.option3">{{optionModel.option3}}</mat-option>
+                <mat-option [value]="optionModel.option4">{{optionModel.option4}}</mat-option>
+
 
 
             </mat-select>

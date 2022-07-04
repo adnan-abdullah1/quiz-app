@@ -1,5 +1,5 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router'
 import { SideNavService } from '../service/side-nav.service';
 
 @Component({
@@ -9,12 +9,15 @@ import { SideNavService } from '../service/side-nav.service';
 })
 export class TopNavComponent implements OnInit {
   
-  constructor(private sidenavService:SideNavService) { }
+  constructor(private sidenavService:SideNavService , private readonly router:Router) { }
 
   ngOnInit(): void {
   }
   toggleRightSidenav() {
     console.log('done click in top')
     this.sidenavService.toggle();
+  }
+  home(){
+    this.router.navigate(['/'])
   }
 }

@@ -11,6 +11,7 @@ export const QuizSchema=new mongoose.Schema({
       {
       questionType:{type:String},
       question:{type:String},
+      image:{type:String,default:null},
       rightAnswer:{type:String},
       options:[String]
       },],
