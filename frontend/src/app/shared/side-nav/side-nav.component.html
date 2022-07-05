@@ -1,11 +1,14 @@
-<mat-sidenav-container>
-    <mat-sidenav #sidenav mode="over" hasBackdrop="unset">
-        <mat-nav-list #sidenav>
-            <a mat-list-item>Home</a>
+<mat-sidenav-container class="sidenav">
+    <mat-sidenav #sidenav mode="over" hasBackdrop="false">
+        <mat-nav-list #sidenav class="nav-container">
+            <a mat-list-item routerLink="/admin/dashboard"> <i class="fa fa-dashboard fa-lg" aria-hidden="true"><span class="sideNavList" routerLink="admin/dashboard">Dashborad</span></i> </a>
+            <a mat-list-item routerLink="/admin/add-quiz"> <i class="fa fa-plus fa-lg" aria-hidden="true"><span class="sideNavList">Add Quiz</span></i> </a>
+            <a mat-list-item routerLink="/admin/add-quiz"> <i class="fa fa-question-circle fa-lg" aria-hidden="true"><span class="sideNavList">Help</span></i> </a>
+
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div style="height: 90vh;" class="navbar">
+        <div style="height:89.69vh; " class="navbar">
             <!-- <app-home></app-home> -->
             <router-outlet></router-outlet>
         </div>

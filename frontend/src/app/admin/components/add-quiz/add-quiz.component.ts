@@ -53,9 +53,27 @@ export class AddQuizComponent implements OnInit {
     //validation functins Ends here:::::::::::::
     // ::::::::::::::::::::::::::::::::::::::::::::
   }
+  validQuestion(){
+    let question=this.question//.replaceAll(" ","")
+    if(!question){
+      throw new Error("Question Lenght should be at least 5?")
+    }
+    if(this.questionType=='text'){
+      this.questionBank.forEach((val:any)=>{
+        console.log('running')
+        if(val?.question==question){
+          throw new Error("Question already entered")
+        }
+      })
+    }
+  }
+
+
   submit(){
     try{
       this.validateOptions(this.optionModel)
+      this.validQuestion()
+
     }
     catch(err:any){
 
@@ -68,15 +86,25 @@ export class AddQuizComponent implements OnInit {
     if(this.noOfQuestionAdded<=this.totalNoOfQuestions)
     {
       this.noOfQuestionAdded++;
+
       this.questionBank.push({
         "questionType":this.questionType,
         "question":this.question,
         "image":this.encodedImage,
         "rightAnswer":this.questionBank.rightAnswer
+
       })
         this.questionBank.push({ "options":Object.values(this.optionModel)})
-        this.quizModel.questionBank=this.questionBank
 
+        //below emptying filled form
+        this.quizModel.questionBank=this.questionBank
+        this.quizModel=[]
+        this.questionType=''
+        this.question=''
+        this.optionModel={}
+        this.encodedImage=''
+        //:::::::::::::::::::::::
+        
         this.toastr.info(`${this.noOfQuestionAdded} Questions Added`)
         if(this.noOfQuestionAdded>=this.totalNoOfQuestions){
           Swal.fire('you have added all question\n if you want to preview')

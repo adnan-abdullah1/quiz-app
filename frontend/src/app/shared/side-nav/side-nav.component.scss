@@ -8,6 +8,18 @@
     }
 }
 
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sideNavList {
+    margin-left: 20px;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 @media screen and (max-width:600px) {
      ::ng-deep {
         .mat-drawer {

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, } from '@angular/core';
+import {Router} from '@angular/router'
 import { MatSidenav } from '@angular/material/sidenav';
 import { SideNavService } from '../service/side-nav.service';
 
@@ -10,12 +11,13 @@ import { SideNavService } from '../service/side-nav.service';
 export class SideNavComponent implements OnInit {
   mode:any='push'
  @ViewChild('sidenav') sidenav!:MatSidenav;
-  constructor(private sidenavService:SideNavService ,) { }
+  constructor(private sidenavService:SideNavService , private readonly router:Router) { }
 
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);  
   }
+  
   
 }

@@ -1,0 +1,103 @@
+.main-container {
+    // height: 100vh;
+    width: 98.6vw;
+    flex-direction: column;
+    background-color: whitesmoke;
+}
+
+.top-container {
+    // width: 93%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.matCard-top {
+    background-color: aqua;
+    margin-top: 20px;
+    width: 370px;
+    height: 200px;
+}
+
+//table css
+.demo-table {
+    width: 93%;
+    // margin-right:2px;
+    // margin-left: 20px;
+    margin: 50px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.paginator {
+    width: 91.93vw;
+    margin-left: 48px;
+    background-color: wheat;
+}
+
+.filter {
+    margin-top: 5px;
+    width: 91.93vw;
+    margin-left: 48px;
+}
+
+.mat-column-demo-position {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-demo-name {
+    padding-left: 16px;
+    font-size: 20px;
+}
+
+.mat-column-demo-weight {
+    font-style: italic;
+}
+
+.mat-column-demo-symbol {
+    width: 32px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+    // background-color: aqua;
+}
+
+.demo-row-is-clicked {
+    font-weight: bold;
+}
+
+//table css ended
+@media screen and (max-width:600px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .top-container {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+    }
+    .demo-table {
+        width: 50%;
+        margin-top: 20px;
+    }
+}

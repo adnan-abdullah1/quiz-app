@@ -20,6 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/components/home.component';
 import { ToastrModule} from 'ngx-toastr';
+import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
+import {MatTableModule} from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import { ToastrModule} from 'ngx-toastr';
     AddQuizComponent,
     TopNavComponent,
     SideNavComponent,
+    DashboardComponent,
 
 
 
   ],
   imports: [
-  
+    
+    MatPaginatorModule,
+    MatTableModule,
     ToastrModule.forRoot(),
     MatProgressSpinnerModule,
     HttpClientModule,
