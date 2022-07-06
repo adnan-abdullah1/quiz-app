@@ -20,8 +20,10 @@ export class AddQuizComponent implements OnInit {
   questionBank:any=[]
   totalNoOfQuestions!:number; // will let admin only add questions upto the limit he set
   noOfQuestionAdded:number=0;// keeps track how many questions user added
-  enablePreview:Boolean=false; //will enable preview and final submit when admin added all questions
+  enablePreviewButton:Boolean=false; //will enable preview and final submit when admin added all questions
+  enablePreviewSection:Boolean=false;
   encodedImage?:any;
+  rightAnswer!:string
   constructor(private readonly adminService:AdminService,
     private readonly toastr:ToastrService) { }
 
@@ -91,24 +93,26 @@ export class AddQuizComponent implements OnInit {
         "questionType":this.questionType,
         "question":this.question,
         "image":this.encodedImage,
-        "rightAnswer":this.questionBank.rightAnswer
+        "rightAnswer":this.rightAnswer,
+        "options":Object.values(this.optionModel)
 
       })
-        this.questionBank.push({ "options":Object.values(this.optionModel)})
+      
 
         //below emptying filled form
         this.quizModel.questionBank=this.questionBank
-        this.quizModel=[]
+        // this.questionBank=[]
         this.questionType=''
         this.question=''
         this.optionModel={}
         this.encodedImage=''
+        console.log(this.quizModel,'quez')
         //:::::::::::::::::::::::
         
         this.toastr.info(`${this.noOfQuestionAdded} Questions Added`)
         if(this.noOfQuestionAdded>=this.totalNoOfQuestions){
           Swal.fire('you have added all question\n if you want to preview')
-          this.enablePreview=true;
+          this.enablePreviewButton=true;
         }
 
         }
@@ -160,7 +164,7 @@ export class AddQuizComponent implements OnInit {
   }
 
   preview(){
-
+    this.enablePreviewSection=true;
   }
 
 

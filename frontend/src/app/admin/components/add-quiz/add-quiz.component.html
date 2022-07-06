@@ -1,4 +1,4 @@
-<section *ngIf="quizInfo">
+<section *ngIf="quizInfo && !enablePreviewSection">
     <div class="container">
         <h4 class="title">Add Quiz</h4>
 
@@ -37,7 +37,7 @@
     </div>
 
 </section>
-<section *ngIf="!quizInfo">
+<section *ngIf="!quizInfo && !enablePreviewSection">
     <div class="container">
 
         <mat-form-field class="example-full-width text-area mobile-height" appearance="outline">
@@ -80,7 +80,7 @@
 
         <mat-form-field appearance="outline" class="form-field text-area">
             <mat-label>Choose an option</mat-label>
-            <mat-select [(ngModel)]=questionBank.rightAnswer>
+            <mat-select [(ngModel)]=rightAnswer>
                 <mat-option [value]="optionModel.option1">{{optionModel.option1}}</mat-option>
                 <mat-option [value]="optionModel.option2">{{optionModel.option2}}</mat-option>
                 <mat-option [value]="optionModel.option3">{{optionModel.option3}}</mat-option>
@@ -90,12 +90,61 @@
 
             </mat-select>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="submit()" *ngIf="!enablePreview">Submit</button>
+        <button mat-raised-button color="primary" (click)="submit()" *ngIf="!enablePreviewButton">Submit</button>
         <div class="final-preview">
-            <button mat-raised-button color="primary" (click)="preview()" *ngIf="enablePreview">Preview</button>
-            <button mat-raised-button color="primary" (click)="finalSubmit()" *ngIf="enablePreview">Final Submit</button>
+            <button mat-raised-button color="primary" (click)="preview()" *ngIf="enablePreviewButton">Preview</button>
+            <button mat-raised-button color="primary" (click)="finalSubmit()" *ngIf="enablePreviewButton">Final Submit</button>
 
         </div>
     </div>
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+                                Preview Below
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+</section>
+<section *ngIf="enablePreviewSection">
+    <mat-card *ngFor="let question of quizModel.questionBank; index as i;">
 
+        <h3 style="color: red;">question {{i}}</h3>
+
+        <mat-form-field class="form-field text-area" appearance="outline">
+            <mat-label>Question</mat-label>
+            <textarea matInput [(ngModel)]="question.question"></textarea>
+        </mat-form-field>
+        <mat-form-field class="form-field text-area" appearance="outline" style="margin-top:10px ;">
+            <mat-label>question Type</mat-label>
+            <input matInput [(ngModel)]="question.questionType">
+        </mat-form-field>
+
+
+
+        <mat-form-field class="form-field text-area" appearance="outline">
+            <mat-label>option1</mat-label>
+            <input matInput [(ngModel)]="question.options[0]">
+        </mat-form-field>
+        <mat-form-field class="form-field text-area" appearance="outline">
+            <mat-label>option2</mat-label>
+            <input matInput [(ngModel)]="question.options[1]">
+        </mat-form-field>
+        <mat-form-field class="form-field text-area" appearance="outline">
+            <mat-label>option3</mat-label>
+            <input matInput [(ngModel)]="question.options[2]">
+        </mat-form-field>
+        <mat-form-field class="form-field text-area" appearance="outline">
+            <mat-label>option4</mat-label>
+            <input matInput [(ngModel)]="question.options[3]">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field text-area">
+            <mat-label>Choose an right option</mat-label>
+
+            <mat-select [(ngModel)]=question.rightAnswer>
+
+                <mat-option [value]="question?.options[0]">{{question?.options[0]}}</mat-option>
+                <mat-option [value]="question?.options[1]">{{question?.options[1]}}</mat-option>
+                <mat-option [value]="question?.options[2]">{{question?.options[2]}}</mat-option>
+                <mat-option [value]="question?.options[3]">{{question?.options[3]}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-card>
+    <button mat-raised-button color="primary" (click)="finalSubmit()" *ngIf="enablePreviewButton">Final Submit</button>
 </section>
