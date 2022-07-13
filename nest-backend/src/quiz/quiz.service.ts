@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {ResponseModel} from './quiz-response.model'
 import { AttemptedQuizModel } from './user-attempted-quizs.model';
+import { time } from 'console';
 @Injectable()
 export class QuizService 
 {
@@ -24,41 +25,22 @@ export class QuizService
 
 
 
-    async getQuizSet(partQuiz:any){
-        
-    //   console.log(partQuiz,'par quiz')
-        const organizerName=partQuiz.requestedQuiz.organizerName;
-        const eventName=partQuiz.requestedQuiz.eventName
-        const skip=partQuiz.requestedQuiz.skip
-        console.log(organizerName,eventName,skip)
-        const quizSet=await this.QuizModel.find({"organizerName":organizerName,
-        "eventName":eventName}).limit(1).skip(skip)
-        console.log(quizSet,'quiz Set')
-        const questionID=partQuiz.response.questionID
-        if(questionID){           
-          const checkAnswer= await this.QuizModel.findById(questionID)
-
-            // if(checkAnswer.rightAnswer==partQuiz.response.chosenOption){
-            //     partQuiz.response.result=true;
-          
-            //   }
-            //  else{
-            //     partQuiz.response.result=false;
-            // }
-               const response= new this.ResponseModel(partQuiz.response)
-       
-            response.save((err)=>{
-                 if(err){
-                    throw new HttpException("could not save answer ",409)
-                }
-            })
-           
+     async getQuizSet(id:any,sliceVal:number){
+      
+        const quizQuestions=await this.QuizModel.find({_id:id},{questionBank:1})
+        let questions = quizQuestions[0].questionBank
+        let question = questions.slice(sliceVal,sliceVal+1)
+        return question
     }
 
-    // }
-    //    }
-        return quizSet
+    async getQuizTime(id:any){
+        const quizTime=await this.QuizModel.find({_id:id},{time:1,_id:0})
+        return quizTime[0];
     }
+
+
+
+
     async getQuizResult(userID:any,eventName:any,organizerName:any){
         let  score=0;
         const quizResult=await this.ResponseModel.find({'userId':userID,

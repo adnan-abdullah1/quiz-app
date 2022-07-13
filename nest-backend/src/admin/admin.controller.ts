@@ -1,4 +1,4 @@
-import { Controller ,Post,Res,Req, Get} from '@nestjs/common';
+import { Controller ,Post,Res,Req,Put,Get} from '@nestjs/common';
 import { AdminService } from './admin.service';
 
 @Controller('admin')
@@ -12,6 +12,13 @@ export class AdminController {
     const addedQuiz = await this.adminService.addQuiz(req.body)
     res.json({ status: 200, data: addedQuiz });
     // return allQuizs
+  }
+
+  @Put('/make-quiz-live/:quizID')
+  async makeQuizLive(@Res() res:any,@Req() req:any){
+   
+    const result=await this.adminService.makeQuizLive(req.params.quizID)
+    res.json({'quizMadeLive':result})
   }
 
 }

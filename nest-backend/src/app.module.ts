@@ -6,10 +6,11 @@ import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import {QuizModule} from './quiz/quiz.module'
 import { QuizSchema } from './quiz/quiz.model';
+import { TeamsModule } from './teams/teams.module';
 
 @Module({
   
-  imports: [AdminModule,AuthModule,
+  imports: [AdminModule,AuthModule,TeamsModule,QuizModule,
     MongooseModule.forRootAsync({
       useFactory: () => ({
         uri: 'mongodb://localhost:27017/quiz',
@@ -17,7 +18,8 @@ import { QuizSchema } from './quiz/quiz.model';
     }),
     MongooseModule.forFeature([
       {name:'Quiz',schema:QuizSchema}
-    ])
+    ]),
+    TeamsModule
    
   ],
   controllers: [AppController],

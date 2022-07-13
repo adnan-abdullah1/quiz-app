@@ -23,7 +23,11 @@ import { ToastrModule} from 'ngx-toastr';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import {MatTableModule} from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+import { AuthComponent } from './auth/components/auth/auth.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { AttemptQuizComponent } from './shared/attempt-quiz/attempt-quiz/attempt-quiz.component'
 @NgModule({
   declarations: [
  
@@ -33,12 +37,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     TopNavComponent,
     SideNavComponent,
     DashboardComponent,
+    LoginComponent,
+    RegisterComponent,
+    AuthComponent,
+    AttemptQuizComponent,
 
 
 
   ],
   imports: [
-    
+    MatTabsModule,
     MatPaginatorModule,
     MatTableModule,
     ToastrModule.forRoot(),

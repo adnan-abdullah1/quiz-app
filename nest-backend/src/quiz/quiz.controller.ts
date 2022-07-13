@@ -11,17 +11,20 @@ export class QuizController {
   
     const allQuizs = await this.quizService.getAllQuizs()
     res.json({ status: 200, data: allQuizs });
-    // return allQuizs
+   
   }
   @Post('/quiz-set')
-  async quizSet(@Req() req:any,
-    @Res() res:any){
-      
-    
-    
-    const quizSet=await this.quizService.getQuizSet(req.body)
+  async quizSet(@Req() req:any, @Res() res:any){
+    const {sliceVal,_id}=req.body
+    const quizSet=await this.quizService.getQuizSet(_id,sliceVal)
     
     res.json({status:200,data:quizSet })
+  }
+  @Get('/get-time/:id')
+  async getQuizTime(@Req() req:any, @Res() res:any){
+    const {id} = req.params
+    const quizTime=await this.quizService.getQuizTime(id)
+    res.status(200).send(quizTime)
   }
   
   @Post('/get-quiz-result')

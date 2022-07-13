@@ -17,7 +17,7 @@ export class AuthService {
         }   
         
         // const user=await this.AuthModel.findOne({"email":loginData.email,"password":loginData.password})
-        console.log('user is::::::: ',user)
+       
         const validPassword = await bcrypt.compare(loginData.password, user.password);
         if(!validPassword){
             throw new HttpException("user not found ",409)
@@ -33,12 +33,12 @@ export class AuthService {
             }
         const newUser= new this.AuthModel(registerData)
          // generate salt to hash password
-         const salt = await bcrypt.genSalt(10);
+        //  const salt = await bcrypt.genSalt(10);
     // now we set user password to hashed password
-         newUser.password = await bcrypt.hash(newUser.password, salt);
+        //  newUser.password = await bcrypt.hash(newUser.password, salt);
         newUser.save((err)=>{
             if(err){
-                throw new HttpException("error in saving doc ",409)
+                throw new HttpException(err,409)
             }
         })
         return newUser
