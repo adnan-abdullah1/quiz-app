@@ -34,7 +34,7 @@ export class QuizService
     }
 
     async getQuizTime(id:any){
-        const quizTime=await this.QuizModel.find({_id:id},{time:1,_id:0})
+        const quizTime=await this.QuizModel.find({_id:id},{questionBank:0,_id:0})
         return quizTime[0];
     }
 

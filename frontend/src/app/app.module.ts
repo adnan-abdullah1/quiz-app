@@ -28,6 +28,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { AuthComponent } from './auth/components/auth/auth.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AttemptQuizComponent } from './shared/attempt-quiz/attempt-quiz/attempt-quiz.component'
+import {MatRadioModule} from '@angular/material/radio'
 @NgModule({
   declarations: [
  
@@ -46,6 +47,7 @@ import { AttemptQuizComponent } from './shared/attempt-quiz/attempt-quiz/attempt
 
   ],
   imports: [
+    MatRadioModule,
     MatTabsModule,
     MatPaginatorModule,
     MatTableModule,

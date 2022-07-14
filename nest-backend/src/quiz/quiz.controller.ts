@@ -20,7 +20,7 @@ export class QuizController {
     
     res.json({status:200,data:quizSet })
   }
-  @Get('/get-time/:id')
+  @Get('/get-quiz-info/:id')
   async getQuizTime(@Req() req:any, @Res() res:any){
     const {id} = req.params
     const quizTime=await this.quizService.getQuizTime(id)
