@@ -1,0 +1,28 @@
+<div class="container">
+    <mat-card class="mat-card mat-elevation-z8">
+        <mat-form-field class="input-full">
+            <mat-label>Team Name</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="input-full">
+            <mat-label>Choose Quiz</mat-label>
+            <mat-select>
+                <mat-option value="option1" *ngFor="let quiz of allQuizs">{{quiz.eventName}} by {{quiz.organizerName}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="input-full">
+            <mat-label>Toppings</mat-label>
+            <mat-select multiple>
+                <mat-select-trigger>
+                    {{toppings.value?.[0] || ''}}
+                    <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
+                  (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </mat-card>
+</div>

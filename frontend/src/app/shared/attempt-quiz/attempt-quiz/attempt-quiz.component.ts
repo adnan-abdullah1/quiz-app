@@ -48,6 +48,9 @@ export class AttemptQuizComponent implements OnInit {
     })
   }
   getQuizSet(){
+    if(this.quizInfo.noOfQuestions>this.sliceVal){
+      
+    }
     this.quizService.getQuizSet(this.quizMetaData).subscribe((res:any)=>{
       this.quizSet=res.data[0]
       this.quizMetaData.sliceVal=++this.sliceVal
