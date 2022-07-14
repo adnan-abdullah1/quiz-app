@@ -11,4 +11,8 @@ export class AdminService {
   addQuiz(quizModel:any){
   return this.http.post(`${this.serverUrl}admin/add-quiz`,quizModel)
   }
+
+  getAllUsers(){
+    return this.http.get(`${this.serverUrl}admin/all-users`)
+  }
 }
