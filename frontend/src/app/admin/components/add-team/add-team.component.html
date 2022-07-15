@@ -1,5 +1,7 @@
 <div class="container">
+
     <mat-card class="mat-card mat-elevation-z8">
+        <p style="font-family:Arial, Helvetica, sans-serif; font-size:30px">Add Team</p>
         <mat-form-field class="input-full">
             <mat-label>Team Name</mat-label>
             <input matInput>
@@ -11,6 +13,25 @@
 
             </mat-select>
         </mat-form-field>
+
+
+        <mat-form-field class="input-full">
+            <mat-label>Choose School</mat-label>
+            <mat-select [(ngModel)]="chosenSchool" (selectionChange)="getClass()">
+                <mat-option value={{school}} *ngFor="let school of allSchools">{{school }} </mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+        <mat-form-field class="input-full">
+            <mat-label>Choose class</mat-label>
+            <mat-select>
+                <mat-option value="option1" *ngFor="let class of allClass">{{class}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+
         <mat-form-field class="input-full">
             <mat-label>Add user emails</mat-label>
             <mat-select multiple>
@@ -20,9 +41,16 @@
                   (+{{(emails.value?.length || 0) - 1}} {{emails.value?.length === 2 ? 'other' : 'others'}})
                 </span>
                 </mat-select-trigger>
-                <mat-option *ngFor="let topping of emailList" [value]="topping">{{topping}}</mat-option>
+                <mat-option *ngFor="let email of emailList; index as i" [value]="email">{{userNameList[i]}}, {{email}}</mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-card-actions align="end">
+
+            <button mat-raised-button color="primary">Add Team</button>
+            <button mat-raised-button color="primary">Submit</button>
+
+        </mat-card-actions>
 
     </mat-card>
 </div>

@@ -15,4 +15,12 @@ export class AdminService {
   getAllUsers(){
     return this.http.get(`${this.serverUrl}admin/all-users`)
   }
+
+  getSchools(){
+    return this.http.get(`${this.serverUrl}teams/all-schools`)
+  }
+  getClass(schoolName:string){
+    return this.http.get(`${this.serverUrl}teams/all-class/${schoolName}`)
+  }
+
 }

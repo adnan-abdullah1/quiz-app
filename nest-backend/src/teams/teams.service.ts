@@ -3,10 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {TeamModel} from './teams.model'
 import {QuizModel} from '../quiz/quiz.model'
+import { AuthModel } from 'src/auth/auth.model';
 @Injectable()
 export class TeamsService {
     constructor(@InjectModel('Team')  private readonly teamModel:Model<TeamModel>,
-    @InjectModel('Quiz')  private readonly quizModel:Model<QuizModel>
+    @InjectModel('Quiz')  private readonly quizModel:Model<QuizModel>,
+    @InjectModel('Auth')  private readonly AuthModel:Model<AuthModel>
     ){}
      addTeam(teamData){
         const addedTeam= new this.teamModel(teamData)
@@ -52,5 +54,36 @@ export class TeamsService {
         }
         return {"isQuizLive":true}
     }
+
+//////////////////////////////////////////////////////////////////////
+
+    async getAllSchools(){
+        try{
+        // const allSchools=await this.AuthModel.find({},{schoolName:1,_id:0})
+        const allSchools=await this.AuthModel.aggregate([
+            {$group: {_id:{schoolName:"$schoolName"}}}
+        ])
+        return allSchools
+        }
+        catch (err){
+            throw new Error(err)
+        }
+    }
+
+   async getAllClass(schoolName:string){
+   
+    // let classes:any=new Set()  
+    // let classesArr:string[];
+    // const allClass=await this.AuthModel.find({schoolName:schoolName , className:className},{class:1,_id:0})
+    //  allClass.forEach((classObj:any)=>classes.add(classObj.class)
+    //  )
+    // classesArr=[...classes]
+    let classArr
+    let allClass:any=this.AuthModel.find({schoolName:schoolName},{class:1,_id:0})
+    
+ 
+    return allClass
+    
+   }
 
 }

@@ -7,6 +7,7 @@ export const TeamSchema = new mongoose.Schema({
         emails:[{type:String,unique:true,required:true}],
        }
     ],
+    
     quizID:{type:mongoose.Schema.Types.ObjectId,ref:'Quiz'} ,
     score:{type:Number,default:0}
 });
