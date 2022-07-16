@@ -4,15 +4,16 @@
         <p style="font-family:Arial, Helvetica, sans-serif; font-size:30px">Add Team</p>
         <mat-form-field class="input-full">
             <mat-label>Team Name</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)]="chosenTeamName">
         </mat-form-field>
         <mat-form-field class="input-full">
             <mat-label>Choose Quiz</mat-label>
-            <mat-select>
-                <mat-option value="option1" *ngFor="let quiz of allQuizs">{{quiz.eventName}} by {{quiz.organizerName}}</mat-option>
+            <mat-select [(ngModel)]="teamModel.quizID">
+                <mat-option value={{quiz?._id}} *ngFor="let quiz of allQuizs">{{quiz.eventName}} by {{quiz.organizerName}}</mat-option>
 
             </mat-select>
         </mat-form-field>
+
 
 
         <mat-form-field class="input-full">
@@ -25,8 +26,8 @@
         </mat-form-field>
         <mat-form-field class="input-full">
             <mat-label>Choose class</mat-label>
-            <mat-select>
-                <mat-option value="option1" *ngFor="let class of allClass">{{class}}</mat-option>
+            <mat-select [(ngModel)]="chosenClass" (selectionChange)="getAllUsers()">
+                <mat-option value={{class}} *ngFor="let class of allClass">{{class}}</mat-option>
 
             </mat-select>
         </mat-form-field>
@@ -34,7 +35,7 @@
 
         <mat-form-field class="input-full">
             <mat-label>Add user emails</mat-label>
-            <mat-select multiple>
+            <mat-select [formControl]="emails" multiple [(ngModel)]="selectedEmails">
                 <mat-select-trigger>
                     {{emails.value?.[0] || ''}}
                     <span *ngIf="(emails.value?.length || 0) > 1" class="example-additional-selection">
@@ -47,8 +48,8 @@
 
         <mat-card-actions align="end">
 
-            <button mat-raised-button color="primary">Add Team</button>
-            <button mat-raised-button color="primary">Submit</button>
+            <button mat-raised-button color="primary" (click)="addTeam()">Add Team</button>
+            <button mat-raised-button color="primary" (click)="finalSubmitTeams()">Submit</button>
 
         </mat-card-actions>
 

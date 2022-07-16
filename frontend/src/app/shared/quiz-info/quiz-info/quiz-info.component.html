@@ -1,0 +1,37 @@
+<p>organizer Name: {{quiz.organizerName}}</p>
+<p>Event Name: {{quiz.eventName}}</p>
+<div class="container">
+
+    <mat-card class="example-card">
+        <mat-card-title>{{quiz.time}} minutes</mat-card-title>
+    </mat-card>
+    <mat-card class="example-card">
+        <mat-card-title>{{quiz.noOfQuestions}} Questions</mat-card-title>
+    </mat-card>
+
+</div>
+<div class="cred">
+    <mat-form-field>
+        <mat-label>Team Name</mat-label>
+        <input matInput [(ngModel)]="authModel.teamName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="authModel.email">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="authModel.password">
+    </mat-form-field>
+
+
+</div>
+<div class="buttons">
+    <mat-card-actions align="start">
+        <button mat-raised-button color="warn" (click)="close()">Close</button>
+    </mat-card-actions>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="validate()">Validate</button>
+    </mat-card-actions>
+
+</div>

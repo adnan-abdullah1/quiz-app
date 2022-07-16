@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../service/home.service';
+import { MatDialog } from '@angular/material/dialog';
+import { QuizInfoComponent } from 'src/app/shared/quiz-info/quiz-info/quiz-info.component';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,8 @@ import { HomeService } from '../service/home.service';
 })
 export class HomeComponent implements OnInit {
   allQuizs:any;
-  constructor(private readonly homeService:HomeService) { }
+  constructor(private readonly homeService:HomeService,
+    private dialog:MatDialog ) { }
 
   ngOnInit(): void {
     this.home()
@@ -19,4 +22,8 @@ home(){
     console.log(res)
   })
 }
+  quizInfo(quiz:any){
+    console.log(quiz,'quiz is here')
+    this.dialog.open(QuizInfoComponent,{data:{"quiz":quiz}})
+  }
 }

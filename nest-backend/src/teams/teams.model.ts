@@ -3,8 +3,8 @@ import * as mongoose from 'mongoose'
 export const TeamSchema = new mongoose.Schema({
     teamInfo:[
        {
-        teamName:{type:String,required:true,unique:true},
-        emails:[{type:String,unique:true,required:true}],
+        teamName:{type:String},
+        emails:[String],
        }
     ],
     
@@ -13,10 +13,7 @@ export const TeamSchema = new mongoose.Schema({
 });
 
 export interface TeamModel extends mongoose.Document{
-    teamInfo:[{
-        teamName:{},
-        emails:[]
-    }],
+    teamInfo:[],
    quizID:any,
    score:number
 }

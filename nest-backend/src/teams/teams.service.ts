@@ -10,7 +10,9 @@ export class TeamsService {
     @InjectModel('Quiz')  private readonly quizModel:Model<QuizModel>,
     @InjectModel('Auth')  private readonly AuthModel:Model<AuthModel>
     ){}
-     addTeam(teamData){
+     addTeam(teamData:any){
+        console.log(teamData)
+        try{
         const addedTeam= new this.teamModel(teamData)
     addedTeam.save((err)=>{
             if(err){
@@ -18,6 +20,10 @@ export class TeamsService {
             }
         })
          return addedTeam;
+    }
+    catch (err){
+        throw new Error(err)
+    }
     }
     
       async allowParticpate(data:any){
@@ -85,5 +91,5 @@ export class TeamsService {
     return allClass
     
    }
-
+   
 }

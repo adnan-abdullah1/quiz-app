@@ -10,7 +10,7 @@
     <div class="box1" style="margin-top: 10px;">
         <li *ngFor="let quiz of allQuizs" style="font-size:20px ;background-color:rgb(151, 148, 148); height:37px">
             {{quiz.eventName}}
-            <button mat-raised-button style="float: right; margin-right:10px ;width:50px">View</button>
+            <button mat-raised-button style="float: right; margin-right:10px ;width:50px" (click)="quizInfo(quiz)">View</button>
         </li>
     </div>
     <div class="box2">

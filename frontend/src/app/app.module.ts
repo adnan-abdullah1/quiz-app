@@ -15,7 +15,7 @@ import {MatSelectModule} from '@angular/material/select'
 import {MatCardModule} from '@angular/material/card'
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HomeComponent } from './home/components/home.component';
@@ -29,7 +29,9 @@ import { AuthComponent } from './auth/components/auth/auth.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AttemptQuizComponent } from './shared/attempt-quiz/attempt-quiz/attempt-quiz.component'
 import {MatRadioModule} from '@angular/material/radio';
-import { AddTeamComponent } from './admin/components/add-team/add-team.component'
+import { AddTeamComponent } from './admin/components/add-team/add-team.component';
+import { QuizInfoComponent } from './shared/quiz-info/quiz-info/quiz-info.component'
+import {MatDialogModule} from '@angular/material/dialog'
 @NgModule({
   declarations: [
  
@@ -44,11 +46,14 @@ import { AddTeamComponent } from './admin/components/add-team/add-team.component
     AuthComponent,
     AttemptQuizComponent,
     AddTeamComponent,
+    QuizInfoComponent,
 
 
 
   ],
   imports: [
+    MatDialogModule,
+    ReactiveFormsModule,
     MatRadioModule,
     MatTabsModule,
     MatPaginatorModule,

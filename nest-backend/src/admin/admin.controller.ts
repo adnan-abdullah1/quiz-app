@@ -21,10 +21,10 @@ export class AdminController {
     res.json({'quizMadeLive':result})
   }
 
-  @Get('/all-users')
+  @Get('/all-users/:chosenSchool/:chosenClass')
   async getAllUsers(@Res() res:any,@Req() req:any){
-    
-    const allUsers=await this.adminService.getAllUsers()
+    const {chosenSchool,chosenClass}=req.params
+    const allUsers=await this.adminService.getAllUsers(chosenSchool,chosenClass)
     res.status(200).json({users:allUsers})
   }
 }

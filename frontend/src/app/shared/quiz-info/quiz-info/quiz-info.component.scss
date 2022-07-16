@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    direction: row;
+    justify-content: space-around;
+    margin-bottom: 4px;
+}
+
+.cred {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 90%;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

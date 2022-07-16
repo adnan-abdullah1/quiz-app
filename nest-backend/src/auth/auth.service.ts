@@ -1,24 +1,29 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import {TeamModel} from '../teams/teams.model'
 import {AuthModel} from './auth.model'
+
 const bcrypt = require('bcrypt')
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel('Auth') private readonly AuthModel:Model<AuthModel>){}
+    constructor(@InjectModel('Auth') private readonly AuthModel:Model<AuthModel>,
+    @InjectModel('Team')  private readonly teamModel:Model<TeamModel>
+    ){}
  
     async  login(loginData:any){
         if(!(loginData.email || loginData.password)){
             throw new HttpException("enter both email and password ",409)
         }
        const user=await this.AuthModel.findOne({"email":loginData.email})
+     
         if(!user){
-            throw new HttpException("email not found ",409)
+            throw  new HttpException("email not found ",409)
         }   
         
-        // const user=await this.AuthModel.findOne({"email":loginData.email,"password":loginData.password})
+        const validPassword=await this.AuthModel.findOne({"email":loginData.email,"password":loginData.password},{password:0})
        
-        const validPassword = await bcrypt.compare(loginData.password, user.password);
+        // const validPassword = await bcrypt.compare(loginData.password, user.password);
         if(!validPassword){
             throw new HttpException("user not found ",409)
         }
@@ -44,4 +49,25 @@ export class AuthService {
         return newUser
         
     }
+
+
+    async validate(authModel:any){
+        const {quizID,email,password}=authModel
+        const loginData={email:email,password:password}
+        
+        try{
+         await this.login(loginData)
+        //now validate if email exists on given team name
+       
+        const teams= await this.teamModel.findOne({quizID:quizID})
+        if(!teams){
+            throw new HttpException('no such quiz added with teams Model',409)
+        }
+        return teams
+        }
+        catch(err){
+            return {status:err.status,message:err.message}
+        }
+    }
+
 }

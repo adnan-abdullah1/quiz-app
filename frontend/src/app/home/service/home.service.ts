@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-
+  allQuizs:any={};
   constructor(private readonly http:HttpClient) { }
   home(){
-    return this.http.get(`http://localhost:3000/`)
+     return this.http.get(`http://localhost:3000/`)
+    
   }
 }

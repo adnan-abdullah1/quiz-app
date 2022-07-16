@@ -18,5 +18,9 @@ export class AuthController {
   
     res.status(200).json({"newUser":newUser})
   }
-  
+  @Post('/validate')
+  async validate(@Res() res:any,@Req() req:any){
+    const isValid=await this.authService.validate(req.body)
+    res.status(200).send(isValid)
+  }  
 }

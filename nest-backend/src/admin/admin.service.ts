@@ -28,8 +28,9 @@ async makeQuizLive(id:any){
     return result.isExamLive
 }
 
-async getAllUsers(){
-    const allUsers=this.authModel.find({},{password:0,__v:0,isAdmin:0})
+async getAllUsers(chosenSchool,chosenClass){
+    console.log(chosenSchool,chosenClass)
+    const allUsers=this.authModel.find({SchoolName:chosenSchool,class:chosenClass},{password:0,__v:0,isAdmin:0})
     return allUsers
 }
 }

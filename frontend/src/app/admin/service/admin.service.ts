@@ -12,9 +12,6 @@ export class AdminService {
   return this.http.post(`${this.serverUrl}admin/add-quiz`,quizModel)
   }
 
-  getAllUsers(){
-    return this.http.get(`${this.serverUrl}admin/all-users`)
-  }
 
   getSchools(){
     return this.http.get(`${this.serverUrl}teams/all-schools`)
@@ -22,5 +19,15 @@ export class AdminService {
   getClass(schoolName:string){
     return this.http.get(`${this.serverUrl}teams/all-class/${schoolName}`)
   }
+  getAllUsers(chosenSchool:string,chosenClass:string){
+   
+    return this.http.get(`${this.serverUrl}admin/all-users/${chosenSchool}/${chosenClass}`)
+  }
+
+  finalSubmitTeams(teamModel:any){
+    console.log(teamModel,'teammodel')
+    return this.http.post(`${this.serverUrl}teams/add-team`,teamModel)
+  }
+
 
 }
