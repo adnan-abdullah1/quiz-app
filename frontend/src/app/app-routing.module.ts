@@ -6,6 +6,7 @@ import { DashboardComponent } from './admin/components/dashboard/dashboard.compo
 import { AuthComponent } from './auth/components/auth/auth.component';
 import { HomeComponent } from './home/components/home.component';
 import { AttemptQuizComponent } from './shared/attempt-quiz/attempt-quiz/attempt-quiz.component';
+import { ViewMultimediaComponent } from './shared/attempt-quiz/attempt-quiz/view-multimedia/view-multimedia.component';
 
 const routes: Routes = [
   {path:'',pathMatch:'full',redirectTo:'home'},
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path:'admin/add-team',component:AddTeamComponent},
   {path:'atuhenticate',component:AuthComponent},
   {path:'attempt-quiz',component:AttemptQuizComponent},
-  
+  {path:'view-multimedia',component:ViewMultimediaComponent}
 ];
 
 @NgModule({

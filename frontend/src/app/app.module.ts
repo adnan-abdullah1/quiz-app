@@ -31,7 +31,8 @@ import { AttemptQuizComponent } from './shared/attempt-quiz/attempt-quiz/attempt
 import {MatRadioModule} from '@angular/material/radio';
 import { AddTeamComponent } from './admin/components/add-team/add-team.component';
 import { QuizInfoComponent } from './shared/quiz-info/quiz-info/quiz-info.component'
-import {MatDialogModule} from '@angular/material/dialog'
+import {MatDialogModule} from '@angular/material/dialog';
+import { ViewMultimediaComponent } from './shared/attempt-quiz/attempt-quiz/view-multimedia/view-multimedia.component'
 @NgModule({
   declarations: [
  
@@ -47,6 +48,7 @@ import {MatDialogModule} from '@angular/material/dialog'
     AttemptQuizComponent,
     AddTeamComponent,
     QuizInfoComponent,
+    ViewMultimediaComponent,
 
 
 

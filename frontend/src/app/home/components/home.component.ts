@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
     private dialog:MatDialog ) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('quizID')
     this.home()
   }
 home(){

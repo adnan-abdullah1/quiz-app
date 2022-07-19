@@ -26,16 +26,18 @@ export class QuizService
 
 
      async getQuizSet(id:any,sliceVal:number){
-      
+    
         const quizQuestions=await this.QuizModel.find({_id:id},{questionBank:1})
         let questions = quizQuestions[0].questionBank
         let question = questions.slice(sliceVal,sliceVal+1)
         return question
     }
 
-    async getQuizTime(id:any){
-        const quizTime=await this.QuizModel.find({_id:id},{questionBank:0,_id:0})
-        return quizTime[0];
+    async getQuizTime(id:string){
+      
+        const quizTime=await this.QuizModel.findOne({_id:id},{questionBank:0,_id:0})
+        console.log(quizTime,'quiz time')
+        return quizTime;
     }
 
 

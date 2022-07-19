@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 // import { ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
-
+import {Router} from '@angular/router'
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { QuizInfoService } from '../../service/quiz-info.service';
+
 
 @Component({
   selector: 'app-quiz-info',
@@ -14,9 +15,10 @@ export class QuizInfoComponent implements OnInit {
   authModel:any={};
   constructor(private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data:any,
-    private quizInfoService:QuizInfoService
+    private quizInfoService:QuizInfoService, private router:Router
     ) { }
     quiz=this.data.quiz
+    
   ngOnInit(): void {
    console.log(this.quiz,'got quiz')
   }
@@ -24,10 +26,14 @@ export class QuizInfoComponent implements OnInit {
     this.dialog.closeAll()
   }
   validate(){
+    this.authModel.quizID=this.quiz._id
     this.quizInfoService.validate(this.authModel).subscribe((res:any)=>{
-
+      localStorage.setItem('quizID',res.quizID)
+      this.dialog.closeAll()
+      this.router.navigate(['/attempt-quiz'])
     },(err:any)=>{
-      Swal.fire(err)
+     console.log(err)
+      Swal.fire(`${err.error.message}`)
     })
   }
 }

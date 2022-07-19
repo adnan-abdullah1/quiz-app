@@ -52,21 +52,34 @@ export class AuthService {
 
 
     async validate(authModel:any){
-        const {quizID,email,password}=authModel
+        console.log(authModel,'authModel')
+        let emailExists:Boolean;
+        const {quizID,teamName,email,password}=authModel
         const loginData={email:email,password:password}
         
         try{
          await this.login(loginData)
         //now validate if email exists on given team name
-       
-        const teams= await this.teamModel.findOne({quizID:quizID})
+    
+        const teams= await this.teamModel.findOne({quizID:quizID},{teamInfo:1,_id:0})
         if(!teams){
-            throw new HttpException('no such quiz added with teams Model',409)
+            throw new HttpException('quiz id not found in teams',409)
         }
-        return teams
+        
+        emailExists= teams.teamInfo.some((emailsObj:any)=>
+            emailsObj.emails.some((emaiL:any)=>emaiL==email)  &&
+            emailsObj.teamName===teamName
+            
+        )
+        
+        if(!emailExists){
+
+            throw new HttpException('Email doesnt belong to team',409)
+        }
+        return {'quizID':quizID}
         }
         catch(err){
-            return {status:err.status,message:err.message}
+            throw new HttpException(err,409)
         }
     }
 

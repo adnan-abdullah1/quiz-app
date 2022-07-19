@@ -15,15 +15,16 @@ export class QuizController {
   }
   @Post('/quiz-set')
   async quizSet(@Req() req:any, @Res() res:any){
-    const {sliceVal,_id}=req.body
-    const quizSet=await this.quizService.getQuizSet(_id,sliceVal)
+    const {sliceVal,id}=req.body
+    console.log(sliceVal,id)
+    const quizSet=await this.quizService.getQuizSet(id,sliceVal)
     
     res.json({status:200,data:quizSet })
   }
   @Get('/get-quiz-info/:id')
   async getQuizTime(@Req() req:any, @Res() res:any){
-    const {id} = req.params
-    const quizTime=await this.quizService.getQuizTime(id)
+    console.log(req.params.id,'req.params.id')
+    const quizTime=await this.quizService.getQuizTime(req.params.id)
     res.status(200).send(quizTime)
   }
   

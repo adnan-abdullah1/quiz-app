@@ -20,6 +20,7 @@ export class AuthController {
   }
   @Post('/validate')
   async validate(@Res() res:any,@Req() req:any){
+    
     const isValid=await this.authService.validate(req.body)
     res.status(200).send(isValid)
   }  

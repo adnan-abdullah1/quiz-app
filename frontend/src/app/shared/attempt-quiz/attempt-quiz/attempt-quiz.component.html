@@ -1,11 +1,11 @@
 <!-- <div class="container-main"> -->
-<div class="wrapper" *ngIf="!quizInfo.time">
+<!-- <div class="wrapper" *ngIf="!quizInfo?.time">
     <div class="inner">
 
         <mat-spinner mode="indeterminate" color=""></mat-spinner>
     </div>
-</div>
-<div *ngIf="quizInfo.time">
+</div> -->
+<div>
     <div class="question-time ">
 
         <div class="example">
@@ -48,7 +48,7 @@
 
             <div class="question">
 
-                <p><span style="color: red;">Q:{{sliceVal}}</span> {{quizSet?.question}}?</p>
+                <p><span style="color: red;">Q:{{sliceVal}}</span> {{quizSet?.question}}? <i class="fa fa-eye fa-lg eye" aria-hidden="true" *ngIf="quizSet?.questionType=='image'" (click)="viewMultiMedia()"></i></p>
             </div>
 
             <div class="radio-options">
@@ -63,7 +63,8 @@
                     <mat-radio-button value="4" style="font-size: 17px;" [value]="quizSet?.options[3]">{{quizSet?.options[3]}}</mat-radio-button>
                 </mat-radio-group>
             </div>
-            <button mat-raised-button color="primary" (click)="getQuizSet()">Save & Next</button>
+            <button mat-raised-button color="primary" (click)="getQuizSet()" *ngIf="!enableQuizSubmit">Save & Next</button>
+            <button mat-raised-button color="primary" *ngIf="enableQuizSubmit">Final Submit</button>
             <!-- <button mat-raised-button color="primary" [disabled]="this.submitButton==false" (click)="submitResponse()">Submit</button> -->
 
             <!-- <button mat-raised-button color="primary" style="float: left;">Skip & Next</button> -->
