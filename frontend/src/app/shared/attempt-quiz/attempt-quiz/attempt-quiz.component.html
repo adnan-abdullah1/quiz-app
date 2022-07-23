@@ -1,11 +1,12 @@
 <!-- <div class="container-main"> -->
-<!-- <div class="wrapper" *ngIf="!quizInfo?.time">
+<div class="wrapper" *ngIf="!quizInfo?.time">
     <div class="inner">
 
-        <mat-spinner mode="indeterminate" color=""></mat-spinner>
+        <mat-spinner mode="indeterminate"> </mat-spinner>
     </div>
-</div> -->
-<div>
+
+</div>
+<div *ngIf="quizInfo?.time">
     <div class="question-time ">
 
         <div class="example">
