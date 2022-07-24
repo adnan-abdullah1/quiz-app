@@ -7,6 +7,7 @@ import { AdminModule } from './admin/admin.module';
 import {QuizModule} from './quiz/quiz.module'
 import { QuizSchema } from './quiz/quiz.model';
 import { TeamsModule } from './teams/teams.module';
+import { ResponseModule } from './response/response.module';
 
 @Module({
   
@@ -19,7 +20,8 @@ import { TeamsModule } from './teams/teams.module';
     MongooseModule.forFeature([
       {name:'Quiz',schema:QuizSchema}
     ]),
-    TeamsModule
+    TeamsModule,
+    ResponseModule
    
   ],
   controllers: [AppController],

@@ -32,4 +32,25 @@ async getAllSchools(@Res() res:any, @Req() req:any){
     const allClass=await this.teamsService.getAllClass(schoolName)
     res.status(200).send(allClass)
  }
+
+ @Post('teams-info')
+ async findTeams(
+  @Req() req:any
+ )
+ {
+  const teamData = await this.teamsService.findteams(req.body)
+  return teamData
+ }
+
+
+ @Post('team-info')
+ async findTeam(
+  @Req() req:any
+ )
+ {
+  const teamData = await this.teamsService.findteam(req.body)
+  return teamData
+ }
+
+
 }

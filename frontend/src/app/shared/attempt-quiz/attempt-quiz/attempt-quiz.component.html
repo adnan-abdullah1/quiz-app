@@ -4,7 +4,7 @@
 
         <mat-spinner mode="indeterminate"> </mat-spinner>
     </div>
-
+ 
 </div>
 <div *ngIf="quizInfo?.time">
     <div class="question-time ">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="radio-options">
-                <mat-radio-group aria-label="Select an option" [(ngModel)]="response">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="response.response">
 
                     <mat-radio-button value="1" style="font-size: 17px;" [value]="quizSet?.options[0]">{{quizSet?.options[0]}}</mat-radio-button>
                     &nbsp;&nbsp;
@@ -65,7 +65,9 @@
                 </mat-radio-group>
             </div>
             <button mat-raised-button color="primary" (click)="getQuizSet()" *ngIf="!enableQuizSubmit">Save & Next</button>
-            <button mat-raised-button color="primary" *ngIf="enableQuizSubmit">Final Submit</button>
+            <!-- <button mat-raised-button color="primary" *ngIf="enableQuizSubmit">Final Submit</button> -->
+            <button mat-raised-button color="primary"(click)="saveResponse()">Save Response</button>
+            <button mat-raised-button color="primary" (click)="submitResponse()" *ngIf="enableQuizSubmit">Submit Response</button>
             <!-- <button mat-raised-button color="primary" [disabled]="this.submitButton==false" (click)="submitResponse()">Submit</button> -->
 
             <!-- <button mat-raised-button color="primary" style="float: left;">Skip & Next</button> -->

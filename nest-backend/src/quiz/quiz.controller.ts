@@ -28,13 +28,7 @@ export class QuizController {
     res.status(200).send(quizTime)
   }
   
-  @Post('/get-quiz-result')
-  async getQuizResult(@Req() req:any,@Res() res:any){
-    const {userID,eventName,organizerName}=req.body
-    const quizResult=await this.quizService.getQuizResult(userID,eventName,organizerName)
-
-    res.status(200).send(quizResult)
-  }
+ 
  }
  
   

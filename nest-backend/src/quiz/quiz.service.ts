@@ -2,15 +2,13 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { QuizModel } from './quiz.model';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import {ResponseModel} from './quiz-response.model'
-import { AttemptedQuizModel } from './user-attempted-quizs.model';
-import { time } from 'console';
+
+
 @Injectable()
 export class QuizService 
 {
     constructor(@InjectModel('Quiz' ) private readonly QuizModel:Model<QuizModel>,
-    @InjectModel('Response') private readonly ResponseModel:Model<ResponseModel>,
-    @InjectModel('Attempted-Quizs') private readonly AttemptedQuizModel:Model<AttemptedQuizModel>
+   
      
     ){}
    async getAllQuizs(){
@@ -43,39 +41,39 @@ export class QuizService
 
 
 
-    async getQuizResult(userID:any,eventName:any,organizerName:any){
-        let  score=0;
-        const quizResult=await this.ResponseModel.find({'userId':userID,
-            'eventName':eventName,'organizerName':organizerName})
+    // async getQuizResult(userID:any,eventName:any,organizerName:any){
+    //     let  score=0;
+    //     const quizResult=await this.ResponseModel.find({'userId':userID,
+    //         'eventName':eventName,'organizerName':organizerName})
            
-        quizResult.forEach((resp:any)=>{
+    //     quizResult.forEach((resp:any)=>{
           
-            if(resp.result==true){
+    //         if(resp.result==true){
 
-                score++;
-            }
-            else{
+    //             score++;
+    //         }
+    //         else{
                
-            }
-        })
+    //         }
+    //     })
        
-         // save attempted quiz Response in attempted Quiz schema
-            //so user cant again take quiz
-            const attemptedQuiz={
-                "userID":userID,
-                "eventName":eventName,
-                "organizerName":organizerName,
-                "scored":score,
-                "totalQuestions":quizResult.length
+    //      // save attempted quiz Response in attempted Quiz schema
+    //         //so user cant again take quiz
+    //         const attemptedQuiz={
+    //             "userID":userID,
+    //             "eventName":eventName,
+    //             "organizerName":organizerName,
+    //             "scored":score,
+    //             "totalQuestions":quizResult.length
 
-            }
-        let attemptedQuizResponse= new this.AttemptedQuizModel(attemptedQuiz)
-        attemptedQuizResponse.save((err)=>{
-            if(err){
-                throw new HttpException("unable to save data in Attemped quiz schema",409)
-            }
-        })
+    //         }
+    //     let attemptedQuizResponse= new this.AttemptedQuizModel(attemptedQuiz)
+    //     attemptedQuizResponse.save((err)=>{
+    //         if(err){
+    //             throw new HttpException("unable to save data in Attemped quiz schema",409)
+    //         }
+    //     })
         
-        return {"score":score,"totalQuestions":quizResult.length}
-    }
+    //     return {"score":score,"totalQuestions":quizResult.length}
+    // }
 }

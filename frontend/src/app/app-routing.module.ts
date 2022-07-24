@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'admin/dashboard',component:DashboardComponent},
   {path:'admin/add-team',component:AddTeamComponent},
   {path:'atuhenticate',component:AuthComponent},
-  {path:'attempt-quiz',component:AttemptQuizComponent},
+  {path:'attempt-quiz/:quizId/:teamsId/:teamId',component:AttemptQuizComponent},
   {path:'view-multimedia',component:ViewMultimediaComponent}
 ];
 

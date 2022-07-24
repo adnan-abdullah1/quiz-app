@@ -91,5 +91,22 @@ export class TeamsService {
     return allClass
     
    }
+
+  async findteams(data:any){
+    // console.log('quizid----------->',data)
+    const {quizId}= data
+
+    const teamsInfo= await this.teamModel.find({quizId:quizId})
+    return teamsInfo
+   }
+
+
+   async findteam(data:any){
+   
+    const {quizId}= data
+    const {teamName}=data
+    const teamInfo= await this.teamModel.find({quizId:quizId},{teamInfo:{$elemMatch:{"teamInfo.teamName":teamName}}})
+    return teamInfo
+   }
    
 }

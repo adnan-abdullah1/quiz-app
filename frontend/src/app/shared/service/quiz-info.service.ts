@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class QuizInfoService {
+  quiz:any={}
   serverUrl=environment.serverURL
   quizID!:string;
   constructor(private http:HttpClient) { }
@@ -20,4 +21,19 @@ export class QuizInfoService {
   //  )) 
    return res
   }
+  // findTeams(data:any){
+  
+  //   this.quiz.quizId=data
+   
+  //   return this.http.post(`http://localhost:3000/teams/teams-info`,this.quiz)
+  // }
+
+  findTeam(data:any,authModel:any){
+      this.quiz.quizId=data;
+      this.quiz.teamName=authModel.teamName
+      return this.http.post(`http://localhost:3000/teams/team-info`,this.quiz)
+    
+  }
+
+  
 }
