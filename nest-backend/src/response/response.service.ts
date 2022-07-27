@@ -1,7 +1,7 @@
 import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { QuizModel } from 'src/quiz/quiz.model';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Response } from './response.model';
 import { TeamModel } from 'src/teams/teams.model';
 
@@ -9,66 +9,54 @@ import { TeamModel } from 'src/teams/teams.model';
 export class ResponseService {
 
     constructor(@InjectModel('Response') private readonly responseModel:Model<Response>,
-    @InjectModel('QuizModel') private readonly quizModel:Model<QuizModel>,
-    @InjectModel ('TeamModel') private readonly teamModel:Model<TeamModel>
+    @InjectModel('Quiz') private readonly quizModel:Model<QuizModel>,
+    @InjectModel ('teams') private readonly teamModel:Model<TeamModel>
     ){}
 
-    async saveResponse(data:any){
-    
-        const {quizId,teamsId,teamId}= data;
-        let score=0;
-       console.log('quizidd in back end',quizId)
-            const saveResponse= await new  this.responseModel(data)
-             saveResponse.save((err:any)=>{
-                if(err){
-                    throw new HttpException('Somthing went wrong while saving your response',409)
-                }
+    async saveResponse(quizResponse:any){
+        let score:number=0;
+        let {quizId,teamsId,teamId}=quizResponse
+        
+        let quiz=await this.quizModel.findOne({_id:quizId})
+        quiz.questionBank.forEach((quizQuestion:any)=>{
+            quizResponse.responses.forEach((responseQuestion:any)=>{
+                if(quizQuestion.rightAnswer==responseQuestion.response &&
+                    quizQuestion._id==responseQuestion.questionId
+                    ){
+                        score++;
+                    }
             })
-           
-           
+        })
+        quizResponse.score=score;
+        let  result= new this.responseModel(quizResponse)     
+        result.save((err)=>{
+            if(err){
+                throw new HttpException(err,401)
+            }
+        })
+    await this.quizModel.findOneAndUpdate({_id:quizId},{isQuizLive:false})
 
-             const correspondingQuiz = await this.quizModel.find({_id:quizId})
-                    console.log('questionBank',correspondingQuiz)
-                    return
-             correspondingQuiz[0].questionBank.forEach((element:any,i)=>{
-                if(element.rightAnswer==saveResponse.responses[i].response)
-                    score++;
-             })
-
+    let lenghtResponses=await this.responseModel.count({teamsId:teamsId})
+    let teamsInfo=await this.teamModel.find({_id:teamsId},{teamInfo:1})
+    let teamsLength=teamsInfo[0].teamInfo.length
+    
+    
+    if(lenghtResponses==teamsLength){
+        let responses=await this.responseModel.find({teamsId:teamsId})
+        let scoreArr:number[]=[]
+        responses.forEach((teamResponse:any)=>{
+            scoreArr.push(teamResponse.score)
+        })
         
-             const teamsScore= await this.teamModel.updateOne({'teamInfo._id':teamId},{'$set':{
-                'teamInfo.$.score':score
-             }})
-
-
-
-                
-            //    await  this.quizModel.findOneAndUpdate({_id:quizId},{$set:{
-            //         played:true,
-            //     }})           
-                
-                
-                const winner= await this.teamModel.aggregate(
-                    [
-                    { "$unwind": "$teamInfo"},
-                    { "$group": {
-                        "_id": { 
-                            "teamsId": "$_id",
-                            "teamName": "$teamInfo.teamName",
-                        "teamScore":"$teamInfo.score",
-                        }, 
-                    }},
-                 {$sort:{"_id.teamScore":-1}},
-                 {$limit:1}
-                ]
-                 )
-                 console.log('winner ',winner)
-               const teamWins = await this.quizModel.findOneAndUpdate({_id:quizId},{$set:{
-                winnerTeam:winner[0]._id.teamName
-               }})
-              
-        
-            return winner
-            
+        scoreArr=scoreArr.sort()
+        let highestScore=scoreArr[teamsLength-1]
+  
+        responses.forEach(async (team:any)=>{
+            if(team.score==highestScore){
+                await this.quizModel.findOneAndUpdate({quizID:team.quizId},{winnerTeam:team.teamId})
+            }
+        })
+    }
+    
     }
 }

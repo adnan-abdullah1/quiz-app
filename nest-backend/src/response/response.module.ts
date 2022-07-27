@@ -9,7 +9,9 @@ import { ResponseSchema } from './response.model';
 
 
 @Module({
-  imports:[MongooseModule.forFeature([{name:'Response',schema:ResponseSchema},{name:'QuizModel',schema:QuizSchema},{name:'TeamModel',schema:TeamSchema}])],
+  imports:[MongooseModule.forFeature([{name:'Response',schema:ResponseSchema},
+  {name:'Quiz',schema:QuizSchema},
+  {name:'teams',schema:TeamSchema}])],
   
   controllers: [ResponseController],
   providers: [ResponseService]

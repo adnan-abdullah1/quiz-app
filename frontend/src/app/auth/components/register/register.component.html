@@ -3,25 +3,37 @@
 
     <mat-form-field class="example-form-field special" appearance="fill">
         <mat-label>First Name</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" [(ngModel)]="authModel.firstName">
 
     </mat-form-field>
 
     <mat-form-field class="example-form-field special" appearance="fill">
         <mat-label>Last Name</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" [(ngModel)]="authModel.lastName">
 
     </mat-form-field>
+    <div class="school">
+        <mat-form-field class="example-form-field special" appearance="fill">
+            <mat-label>School</mat-label>
+            <input matInput type="text" [(ngModel)]="authModel.schoolName">
+
+        </mat-form-field>
+        <mat-form-field class="example-form-field special" appearance="fill">
+            <mat-label>Class</mat-label>
+            <input matInput type="text" [(ngModel)]="authModel.class">
+
+        </mat-form-field>
+    </div>
 
     <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput type="email">
+        <input matInput type="email" [(ngModel)]="authModel.email">
 
     </mat-form-field>
     <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Password</mat-label>
-        <input matInput type="password">
+        <input matInput type="password" [(ngModel)]="authModel.password">
 
     </mat-form-field>
-    <button mat-raised-button color="primary">Signup</button>
+    <button mat-raised-button color="primary" (click)="register()">Register</button>
 </div>

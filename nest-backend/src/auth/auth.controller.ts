@@ -16,12 +16,14 @@ export class AuthController {
   async register(@Res() res:any,@Req() req:any){
     const newUser=await this.authService.register(req.body)
   
-    res.status(200).json({"newUser":newUser})
+    res.status(200).json({"message":newUser})
   }
   @Post('/validate')
   async validate(@Res() res:any,@Req() req:any){
     
     const isValid=await this.authService.validate(req.body)
+    console.log(isValid)
     res.status(200).send(isValid)
+    console.log('.............####################')
   }  
 }

@@ -7,6 +7,7 @@ export const QuizSchema=new mongoose.Schema({
     time:Number,
     noOfQuestions:Number,
     questionNo: Number,
+    winnerTeam:String,
     questionBank: [
       {
       questionType:{type:String},
@@ -15,8 +16,8 @@ export const QuizSchema=new mongoose.Schema({
       rightAnswer:{type:String},
       options:[String]
       },],
-   
-    isExamLive: { type: Boolean, default: false }
+      winner:{type:String,default:"NotPlayed"},
+    isQuizLive: { type: Boolean, default: false }
 });
 
 export interface QuizModel extends mongoose.Document{
@@ -26,6 +27,6 @@ export interface QuizModel extends mongoose.Document{
   noOfQuestions:Number,
   quizCreatedAt:Date,
   questionBank:[],
-  isExamLive:Boolean
+  isQuizLive:Boolean
   
 }

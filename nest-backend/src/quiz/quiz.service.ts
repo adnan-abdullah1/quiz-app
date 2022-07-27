@@ -7,7 +7,7 @@ import { Model } from 'mongoose';
 @Injectable()
 export class QuizService 
 {
-    constructor(@InjectModel('Quiz' ) private readonly QuizModel:Model<QuizModel>,
+    constructor(@InjectModel('Quiz') private readonly QuizModel:Model<QuizModel>,
    
      
     ){}

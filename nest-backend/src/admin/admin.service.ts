@@ -16,16 +16,17 @@ addQuiz(quizData:any){
 }
 
 async makeQuizLive(id:any){
-    const result=await this.QuizModel.findOneAndUpdate({_id:id,isExamLive:true},(err)=>{
-        if(err){
-            throw new HttpException("some error at quiz id",409)
-        }
-    })
-    if(!result.isExamLive)
+    try{
+    const result=await this.QuizModel.findOneAndUpdate({_id:id},{isQuizLive:true})
+    if(!result.isQuizLive)
     {
         return 'false'
     }
-    return result.isExamLive
+    return result.isQuizLive
+}
+catch(err){
+    throw new HttpException(err,500)
+}
 }
 
 async getAllUsers(chosenSchool,chosenClass){

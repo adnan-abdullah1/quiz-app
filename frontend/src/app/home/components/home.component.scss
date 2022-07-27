@@ -5,6 +5,22 @@
     height: calc(100vh - 70px);
 }
 
+.example-card {
+    max-width: 220px;
+    height: 250px;
+    margin: 3px;
+}
+
+.example-header-image {
+    // background-image: url('https://image.shutterstock.com/image-vector/modern-banner-quiz-business-marketing-600w-1784320847.jpg');
+    // background-image: url('../../../assets/download.jpeg');
+    background-size: cover;
+}
+
+li {
+    list-style: none;
+}
+
 .inner {
     color: white;
     padding: 12px;
@@ -18,11 +34,22 @@
 }
 
 .box1 {
-    border: 2px solid gray;
-    width: 70vw;
+    // border: 2px solid gray;
+    // width: 70vw;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .box2 {
     width: calc(30vw);
     border: 2px solid green;
+}
+
+@media screen and (min-width: 600px) {
+    .box1 {
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+    }
 }

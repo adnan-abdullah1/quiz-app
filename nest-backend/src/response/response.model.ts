@@ -9,6 +9,7 @@ responses:[{
    questionId:{type:String},
 
 }],
+score:{type:Number,default:0},
 quizId:{type:String}
   
 })

@@ -78,6 +78,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 450;
     font-size: 17px;
+    overflow-wrap: break-word;
 }
 
 .time {
@@ -134,3 +135,9 @@ button {
 //     margin-top: 20px;
 //     float: left;
 // }
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}

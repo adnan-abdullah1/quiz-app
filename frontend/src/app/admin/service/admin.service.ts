@@ -29,5 +29,7 @@ export class AdminService {
     return this.http.post(`${this.serverUrl}teams/add-team`,teamModel)
   }
 
-
+  makeLive(quizID:string){
+    return this.http.put(`${this.serverUrl}admin/make-quiz-live/${quizID}`,{})
+  }
 }

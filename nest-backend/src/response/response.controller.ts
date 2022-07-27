@@ -5,7 +5,7 @@ import { ResponseService } from './response.service';
 export class ResponseController {
   constructor(private readonly responseService: ResponseService) {}
 
-  @Post('save-response')
+  @Post('/save-response')
   async saveResponse(
     @Req() req:any
   ){

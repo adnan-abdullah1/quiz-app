@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog'
 import { AttemptQuizService } from '../../service/attempt-quiz.service';
 import { ViewMultimediaComponent } from './view-multimedia/view-multimedia.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-attempt-quiz',
@@ -24,10 +26,11 @@ export class AttemptQuizComponent implements OnInit {
  responses:any=[]
  quizId:any={}
  finalResponse:any={}
-
-
+ spinner:Boolean=false;
+ next=true;
   constructor(private quizService:AttemptQuizService,
-    private dialog:MatDialog,private route:ActivatedRoute) { }
+    private dialog:MatDialog,private route:ActivatedRoute,
+    private router:Router, private toastr:ToastrService) { }
   
   ngOnInit(): void {
   this.getQuizInfo()
@@ -65,6 +68,7 @@ export class AttemptQuizComponent implements OnInit {
     })
   }
   getQuizSet(){
+    
     const quizID=localStorage.getItem('quizID')
     this.quizMetaData.id=quizID
     if(this.quizInfo.noOfQuestions!=this.sliceVal){
@@ -78,7 +82,8 @@ export class AttemptQuizComponent implements OnInit {
       console.log('questionId---',this.questionId)
 
       this.quizMetaData.sliceVal=++this.sliceVal
-      console.log(this.sliceVal,this.quizInfo.noOfQuestions,'[[[[[[[')
+      if(this.sliceVal>1)
+      this.next=!this.next
       // console.log(this.quizSet)
     })
   }
@@ -95,9 +100,18 @@ export class AttemptQuizComponent implements OnInit {
 
   saveResponse()
   {
+    
+    console.log(this.response,'response')
+    if(!this.response.response){
+      this.toastr.warning('Choose response')
+      return
+    }
     this.responses.push(this.response)
     console.log('response',this.responses)
     this.response={}
+    this.next=!this.next
+    this.toastr.info('response added')
+    
     
   }
 
@@ -109,10 +123,14 @@ export class AttemptQuizComponent implements OnInit {
     this.finalResponse.teamId=this.route.snapshot.paramMap.get('teamId')
     this.finalResponse.quizId=this.route.snapshot.paramMap.get('quizId')
     this.finalResponse.responses = this.responses
-    console.log('final responsew ',this.finalResponse)
-
+   
+    
     this.quizService.submitResponse(this.finalResponse).subscribe((res:any)=>{
-      console.log('response save in backend',res)
+      this.toastr.success('reponses saved successfully')
+      this.spinner=true;
+      this.router.navigate(['/'])
+    },(err:any)=>{
+      Swal.fire(err.error)
     })
   }
 

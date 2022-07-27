@@ -5,7 +5,7 @@ import { tap } from 'rxjs';
   providedIn: 'root'
 })
 export class HomeService {
-  allQuizs:any={};
+ 
   constructor(private readonly http:HttpClient) { }
   home(){
      return this.http.get(`http://localhost:3000/`)

@@ -16,13 +16,13 @@ export class AdminController {
 
   @Put('/make-quiz-live/:quizID')
   async makeQuizLive(@Res() res:any,@Req() req:any){
-   
+   console.log(req.params.quizID,'quiz id')
     const result=await this.adminService.makeQuizLive(req.params.quizID)
     res.json({'quizMadeLive':result})
   }
 
   @Get('/all-users/:chosenSchool/:chosenClass')
-  async getAllUsers(@Res() res:any,@Req() req:any){
+  async getAllUsers(@Res() res:any,@Req() req:any ){
     const {chosenSchool,chosenClass}=req.params
     const allUsers=await this.adminService.getAllUsers(chosenSchool,chosenClass)
     res.status(200).json({users:allUsers})

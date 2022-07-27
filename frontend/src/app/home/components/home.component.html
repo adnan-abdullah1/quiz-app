@@ -8,12 +8,28 @@
 
 <div class="container">
     <div class="box1" style="margin-top: 10px;">
-        <li *ngFor="let quiz of allQuizs" style="font-size:20px ;background-color:rgb(151, 148, 148); height:37px">
-            {{quiz.eventName}}
-            <button mat-raised-button style="float: right; margin-right:10px ;width:50px" (click)="quizInfo(quiz)">View</button>
+        <li *ngFor="let quiz of allQuizs">
+            <!-- {{quiz.eventName}}
+            <button mat-raised-button style="float: right; margin-right:10px ;width:50px" (click)="quizInfo(quiz)">View</button> -->
+            <mat-card class="example-card mat-elevation-z8">
+                <mat-card-header>
+                    <mat-card-title>{{quiz.eventName}}</mat-card-title>
+                    <!-- <mat-card-subtitle>def</mat-card-subtitle> -->
+                </mat-card-header>
+                <img mat-card-image src="../../../assets/download.jpeg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        Participate in quiz
+                    </p>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <!-- <button mat-button>LIKE</button> -->
+                    <button mat-raised-button color="primary" (click)="quizInfo(quiz)">Participate</button>
+                </mat-card-actions>
+            </mat-card>
         </li>
     </div>
-    <div class="box2">
+    <!-- <div class="box2">
         <h1>upcoming quizs with date</h1>
-    </div>
+    </div> -->
 </div>

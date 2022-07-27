@@ -40,7 +40,8 @@ teamId:any={}
     // this.router.navigate(['/play-quiz',this.data._id,res._id,res?.teams[0]?._id])
 
     this.quizInfoService.validate(this.authModel).subscribe((res:any)=>{
-      console.log('response---',res)
+      
+      this.teamId=res.teamId
       localStorage.setItem('quizID',res.quizID)
       this.router.navigate(['attempt-quiz',res.quizID,this.teamsId,this.teamId])
       this.dialog.closeAll()

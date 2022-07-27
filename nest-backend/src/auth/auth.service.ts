@@ -3,12 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {TeamModel} from '../teams/teams.model'
 import {AuthModel} from './auth.model'
-
+import {QuizModel} from '../quiz/quiz.model'
 const bcrypt = require('bcrypt')
 @Injectable()
 export class AuthService {
     constructor(@InjectModel('Auth') private readonly AuthModel:Model<AuthModel>,
-    @InjectModel('Team')  private readonly teamModel:Model<TeamModel>
+    @InjectModel('Team')  private readonly teamModel:Model<TeamModel>,
+    @InjectModel('Quiz')  private readonly QuizModel:Model<QuizModel>
+
     ){}
  
     async  login(loginData:any){
@@ -52,8 +54,8 @@ export class AuthService {
 
 
     async validate(authModel:any){
-        console.log(authModel,'authModel')
-        let emailExists:Boolean;
+      
+        let emailExists;
         const {quizID,teamName,email,password}=authModel
         const loginData={email:email,password:password}
         
@@ -61,22 +63,27 @@ export class AuthService {
          await this.login(loginData)
         //now validate if email exists on given team name
     
-        const teams= await this.teamModel.findOne({quizID:quizID},{teamInfo:1,_id:0})
+        const teams= await this.teamModel.findOne({quizID:quizID},{teamInfo:1})
+        
         if(!teams){
             throw new HttpException('quiz id not found in teams',409)
         }
         
-        emailExists= teams.teamInfo.some((emailsObj:any)=>
-            emailsObj.emails.some((emaiL:any)=>emaiL==email)  &&
+        emailExists= teams.teamInfo.find((emailsObj:any)=>
+            emailsObj.emails.find((emaiL:any)=>emaiL==email)  &&
             emailsObj.teamName===teamName
             
         )
-        
+       
         if(!emailExists){
 
             throw new HttpException('Email doesnt belong to team',409)
         }
-        return {'quizID':quizID}
+        let isQuizLive = await this.QuizModel.findOne({_id:quizID},{isQuizLive:1,_id:0})
+        if(!isQuizLive.isQuizLive){
+            throw new HttpException('Quiz is not live',401)
+        }
+        return {'quizID':quizID,'teamId':emailExists._id}
         }
         catch(err){
             throw new HttpException(err,409)

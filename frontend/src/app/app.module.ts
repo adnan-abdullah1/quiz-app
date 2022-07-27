@@ -33,6 +33,8 @@ import { AddTeamComponent } from './admin/components/add-team/add-team.component
 import { QuizInfoComponent } from './shared/quiz-info/quiz-info/quiz-info.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import { ViewMultimediaComponent } from './shared/attempt-quiz/attempt-quiz/view-multimedia/view-multimedia.component'
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [
  
@@ -54,6 +56,7 @@ import { ViewMultimediaComponent } from './shared/attempt-quiz/attempt-quiz/view
 
   ],
   imports: [
+    MatSlideToggleModule,
     MatDialogModule,
     ReactiveFormsModule,
     MatRadioModule,

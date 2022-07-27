@@ -1,5 +1,5 @@
 <section *ngIf="quizInfo && !enablePreviewSection">
-    <div class="container">
+    <mat-card class="container">
         <h4 class="title">Add Quiz</h4>
 
         <mat-form-field class="form-field mdInput" appearance="outline">
@@ -34,7 +34,7 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="next()">Next</button>
-    </div>
+    </mat-card>
 
 </section>
 <section *ngIf="!quizInfo && !enablePreviewSection">

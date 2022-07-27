@@ -1,10 +1,16 @@
+<div class="wrapper" *ngIf="spinner">
+    <div class="inner">
+
+        <mat-spinner mode="indeterminate" color=""></mat-spinner>
+    </div>
+</div>
 <!-- <div class="container-main"> -->
 <div class="wrapper" *ngIf="!quizInfo?.time">
     <div class="inner">
 
         <mat-spinner mode="indeterminate"> </mat-spinner>
     </div>
- 
+
 </div>
 <div *ngIf="quizInfo?.time">
     <div class="question-time ">
@@ -64,9 +70,9 @@
                     <mat-radio-button value="4" style="font-size: 17px;" [value]="quizSet?.options[3]">{{quizSet?.options[3]}}</mat-radio-button>
                 </mat-radio-group>
             </div>
-            <button mat-raised-button color="primary" (click)="getQuizSet()" *ngIf="!enableQuizSubmit">Save & Next</button>
+            <button mat-raised-button color="primary" [disabled]="next" (click)="getQuizSet()" *ngIf="!enableQuizSubmit">Next</button>
             <!-- <button mat-raised-button color="primary" *ngIf="enableQuizSubmit">Final Submit</button> -->
-            <button mat-raised-button color="primary"(click)="saveResponse()">Save Response</button>
+            <button mat-raised-button color="primary" [disabled]="!next" (click)="saveResponse()">Save Response</button>
             <button mat-raised-button color="primary" (click)="submitResponse()" *ngIf="enableQuizSubmit">Submit Response</button>
             <!-- <button mat-raised-button color="primary" [disabled]="this.submitButton==false" (click)="submitResponse()">Submit</button> -->
 

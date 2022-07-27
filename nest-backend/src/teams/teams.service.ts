@@ -93,6 +93,7 @@ export class TeamsService {
    }
 
   async findteams(data:any){
+    
     // console.log('quizid----------->',data)
     const {quizId}= data
 
