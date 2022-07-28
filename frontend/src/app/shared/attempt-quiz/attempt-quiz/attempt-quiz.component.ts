@@ -51,7 +51,7 @@ export class AttemptQuizComponent implements OnInit {
     this.minutes=Math.floor(this.seconds/60);
     this.remainSeconds=this.seconds%60;
     // console.log(this.seconds)
-    if(this.seconds === 0){ clearInterval(intervalId) ; }
+    if(this.seconds === 0){ clearInterval(intervalId) ; this.submitResponse()}
 }, 1000)
 
 }

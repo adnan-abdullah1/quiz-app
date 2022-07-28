@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component ,HostListener} from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+@HostListener("window:beforeunload",["$event"]) unloadHandler(event:Event){
+  event.returnValue=false;
+  
+}
   title = 'frontend';
 }

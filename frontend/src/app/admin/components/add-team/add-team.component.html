@@ -3,6 +3,10 @@
     <mat-card class="mat-card mat-elevation-z8">
         <p style="font-family:Arial, Helvetica, sans-serif; font-size:30px">Add Team</p>
         <mat-form-field class="input-full">
+            <mat-label>No Of Teams</mat-label>
+            <input matInput type="number" [(ngModel)]="numberOfTeams" [disabled]="!noOfTeams">
+        </mat-form-field>
+        <mat-form-field class="input-full">
             <mat-label>Team Name</mat-label>
             <input matInput [(ngModel)]="chosenTeamName">
         </mat-form-field>

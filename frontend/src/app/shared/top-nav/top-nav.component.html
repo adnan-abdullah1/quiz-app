@@ -1,6 +1,7 @@
 <mat-toolbar>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toggleRightSidenav()">
-     <mat-icon>menu</mat-icon>
+     <mat-icon *ngIf="!closeIcon">menu</mat-icon>
+     <mat-icon *ngIf="closeIcon">close</mat-icon>
    </button>
 
 

@@ -25,7 +25,8 @@ export class AddTeamComponent implements OnInit {
   teamInfo:any[]=[];
   chosenTeamName!:string;
   selectedEmails:string='';
-  
+  numberOfTeams:number=0;
+  noOfTeams:Boolean=true;
   // chosenTeamEmails!:string[];
   constructor(private homeService:HomeService,
     private readonly adminService:AdminService) { }
@@ -34,6 +35,7 @@ export class AddTeamComponent implements OnInit {
     this.getAllQuizs()
     // this.getAllUsers()
     this.getSchools()
+    
     // console.log(this.chosenSchool)
   }
   getAllQuizs(){
@@ -83,6 +85,8 @@ export class AddTeamComponent implements OnInit {
     )
     this.chosenTeamName=''
     this.selectedEmails=''
+    this.noOfTeams=!this.noOfTeams;
+    console.log(this.numberOfTeams)
   }
 
   finalSubmitTeams(){
